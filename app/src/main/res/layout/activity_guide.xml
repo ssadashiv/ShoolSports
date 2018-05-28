@@ -4,9 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jclzh.shoolsports.view.Activity.GuideActivity">
+    tools:context="com.example.jclzh.shoolsports.view.activity.GuideActivity">
 
 
+
+    <RelativeLayout
+        android:background="@drawable/guide5"
+        android:id="@+id/gudie_cont"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <TextView
         android:visibility="gone"
@@ -14,29 +20,15 @@
         android:gravity="center"
         android:layout_margin="5dp"
         android:layout_alignParentRight="true"
-        android:textColor="#141d26"
+        android:textColor="#fcdcd9d9"
         android:textSize="8sp"
-        android:background="#92cccccc"
+        android:background="#9a313131"
         android:padding="5dp"
         android:text="跳过"
         android:layout_width="40dp"
         android:layout_height="wrap_content"></TextView>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager_guide"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v4.view.ViewPager>
 
 
-    <LinearLayout
-        android:id="@+id/ll_guidpoint"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_width="200dp"
-        android:layout_height="20dp"></LinearLayout>
-
+    </RelativeLayout>
 </RelativeLayout>

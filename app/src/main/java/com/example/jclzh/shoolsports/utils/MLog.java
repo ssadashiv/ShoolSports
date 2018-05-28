@@ -1,4 +1,4 @@
-package com.example.jclzh.shoolsports.Utils;
+package com.example.jclzh.shoolsports.utils;
 
 import android.util.Log;
 

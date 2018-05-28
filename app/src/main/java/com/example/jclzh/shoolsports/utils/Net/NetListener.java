@@ -1,4 +1,4 @@
-package com.example.jclzh.shoolsports.Utils.Net;
+package com.example.jclzh.shoolsports.utils.Net;
 
 import org.json.JSONObject;
 

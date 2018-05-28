@@ -28,6 +28,11 @@ public interface GuideModelInterface {
      */
     Bitmap[]   getGuideImgs();
 
+    /**
+     * 获取引导图片的本地资源
+     * @return
+     */
+    int []  getGuideImgsid();
 
 
     /**

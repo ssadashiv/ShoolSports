@@ -1,7 +1,7 @@
 package com.example.jclzh.shoolsports.presenter;
 
+import android.content.Context;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,7 +23,7 @@ public interface GuidePresenterInterface {
      * @param viewPager    滑动引导
      * @param linearLayout 加载图片的点布局
      */
-    void  setviewpagerimgs(ViewPager viewPager, LinearLayout linearLayout);
+    void  setviewpagerimgs(ViewPager viewPager, LinearLayout linearLayout , Context context);
 
 
     /**

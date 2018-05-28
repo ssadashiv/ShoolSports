@@ -1,4 +1,4 @@
-package com.example.jclzh.shoolsports.Utils;
+package com.example.jclzh.shoolsports.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -41,6 +41,7 @@ public class UtilsImp {
         } else {
             Log.e("工具类", "spput: " + "您的储存格式value无法识别格式");
         }
+        edit.commit();
     }
 
     /**

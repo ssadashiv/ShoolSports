@@ -1,0 +1,42 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jclzh.shoolsports.view.fragment.GuideFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager_guide"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v4.view.ViewPager>
+
+
+        <LinearLayout
+            android:id="@+id/ll_guidpoint"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"></LinearLayout>
+
+        <Button
+            android:visibility="gone"
+            android:textStyle="bold"
+            android:textColor="#FFF"
+            android:background="@drawable/gudiestartbt_bg"
+            android:id="@+id/bt_guidestart"
+            android:text="@string/guide_startbt"
+            android:layout_marginBottom="70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="120dp"
+            android:layout_height="40dp" />
+    </RelativeLayout>
+
+</FrameLayout>

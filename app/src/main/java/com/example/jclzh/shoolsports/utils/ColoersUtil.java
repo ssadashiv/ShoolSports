@@ -1,4 +1,4 @@
-package com.example.jclzh.shoolsports.Utils;
+package com.example.jclzh.shoolsports.utils;
 
 /**
  * 方便颜色选取的工具类

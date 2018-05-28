@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ShoolSports</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="guide_startbt">开始体验</string>
+    <string name="title_activity_base">BaseActivity</string>
 </resources>

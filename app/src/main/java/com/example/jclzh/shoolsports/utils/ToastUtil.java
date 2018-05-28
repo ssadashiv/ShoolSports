@@ -1,4 +1,4 @@
-package com.example.jclzh.shoolsports.Utils;
+package com.example.jclzh.shoolsports.utils;
 
 import android.content.Context;
 import android.view.View;
@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.jclzh.shoolsports.model.Application.AppApplication;
 import com.example.jclzh.shoolsports.model.Application.ApplicationDate;
 
 /**

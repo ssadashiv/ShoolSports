@@ -1,4 +1,4 @@
-package com.example.jclzh.shoolsports.Utils.Net;
+package com.example.jclzh.shoolsports.utils.Net;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -9,7 +9,6 @@ import com.example.jclzh.shoolsports.model.Application.AppApplication;
 
 import org.json.JSONObject;
 
-import java.lang.reflect.Method;
 import java.util.Map;
 
 /**

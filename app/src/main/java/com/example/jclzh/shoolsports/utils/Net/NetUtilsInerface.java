@@ -1,6 +1,4 @@
-package com.example.jclzh.shoolsports.Utils.Net;
-
-import org.json.JSONObject;
+package com.example.jclzh.shoolsports.utils.Net;
 
 import java.util.Map;
 
