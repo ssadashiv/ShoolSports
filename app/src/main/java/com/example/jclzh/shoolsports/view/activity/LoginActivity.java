@@ -1,8 +1,7 @@
 package com.example.jclzh.shoolsports.view.activity;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Intent;
@@ -21,11 +20,15 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jclzh.shoolsports.R;
@@ -216,35 +219,59 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        View view = getLayoutInflater().inflate(R.layout.logininglayout, null);
+        ImageView dialogimgview = view.findViewById(R.id.ivProgress);
+        //设置旋转动画
+        RotateAnimation rotate  = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        LinearInterpolator lin = new LinearInterpolator();
+        rotate.setInterpolator(lin);
+        rotate.setDuration(2000);//设置动画持续周期
+        rotate.setRepeatCount(-1);//设置重复次数
+        rotate.setFillAfter(true);//动画执行完后是否停留在执行完的状态
+        rotate.setStartOffset(10);//执行前的等待时间
+        dialogimgview.setAnimation(rotate);
+
+        builder.setView(view);
+        AlertDialog loginingadialog = builder.show();
+        loginingadialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.touming));//设置透明的背景
+
+
+        //titile 隐藏并且显示加载porges
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+        //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+        //            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+        //
+        //            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+        //            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
+        //                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+        //                @Override
+        //                public void onAnimationEnd(Animator animation) {
+        //                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+        //                }
+        //            });
+        //
+        //            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+        //            mProgressView.animate().setDuration(shortAnimTime).alpha(
+        //                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+        //                @Override
+        //                public void onAnimationEnd(Animator animation) {
+        //                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+        //                }
+        //            });
+        //        } else {
+        //            // The ViewPropertyAnimator APIs are not available, so simply show
+        //            // and hide the relevant UI components.
+        //            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+        //            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+        //        }
 
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-                }
-            });
 
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
+
     }
 
     @Override

@@ -22,7 +22,6 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
     /**
      * 跳过
      */
-    private TextView mTvNextrunmian;
     private RelativeLayout mGudieCont;
 
     @Override
@@ -49,7 +48,6 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
             getSupportFragmentManager().beginTransaction().replace(R.id.gudie_cont, new GuideFragment()).commit();
         } else {
             //用户非首次启动APP
-            mTvNextrunmian.setVisibility(View.VISIBLE);
             startanimode();
         }
     }
@@ -91,8 +89,6 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initView() {
-        mTvNextrunmian = (TextView) findViewById(R.id.tv_nextrunmian);
-        mTvNextrunmian.setOnClickListener(this);
         mGudieCont = (RelativeLayout) findViewById(R.id.gudie_cont);
     }
 
@@ -101,9 +97,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             default:
                 break;
-            case R.id.tv_nextrunmian:
 
-                break;
 
 
         }

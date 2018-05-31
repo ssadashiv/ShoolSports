@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_sport"
         android:icon="@drawable/homesport"
         android:title="运动" />
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_mappath"
         android:icon="@drawable/home_map"
         android:title="路线" />
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_communtiy"
         android:icon="@drawable/home_shequ"
         android:title="社区" />
     <item
-        android:id="@+id/navigation_person"
+        android:id="@+id/navigation_user"
         android:icon="@drawable/homeuser"
         android:title="我的" />
 </menu>

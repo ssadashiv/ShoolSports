@@ -3,8 +3,10 @@
     <color name="colorPrimary">#3e3e3e</color>
     <color name="colorPrimaryDark">#828283</color>
     <color name="colorAccent">#363636</color>
+    <color name="titlecoloer">#dedede</color>
+
     <!--底部buttom 选中的颜色-->
     <color name="tab_checked">#ffffff</color>
     <!--底部未选中的颜色-->
-    <color name="tab_unchecked">#b4b4b4</color>
+    <color name="tab_unchecked">#8b8b8b</color>
 </resources>
