@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.baidu.mapapi.SDKInitializer;
 
 /**
  * Created by lzh on 2018/5/27.
@@ -20,6 +21,8 @@ public class AppApplication extends Application {
         super.onCreate();
         context = getApplicationContext();
         requestQueue = Volley.newRequestQueue(context);
+        //初始化百度地图
+        SDKInitializer.initialize(getApplicationContext());
 
     }
 

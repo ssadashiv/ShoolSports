@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.example.jclzh.shoolsports.R;
 import com.example.jclzh.shoolsports.model.adatapter.HomepagerAdater;
 import com.example.jclzh.shoolsports.utils.viewutils.BottomNavigationViewHelper;
@@ -42,6 +43,8 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         this.savedInstanceState =savedInstanceState;
+        //初始化百度地图
+
         initview();
         initicon();
 

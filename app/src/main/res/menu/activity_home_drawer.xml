@@ -22,8 +22,8 @@
             android:title="运动排名" />
         <item
             android:id="@+id/nav_shequ"
-            android:icon="@drawable/home_shequ"
-            android:title="运动社区" />
+            android:icon="@drawable/jiankang_icon"
+            android:title="健康评估" />
         <item
             android:id="@+id/nav_shop"
             android:icon="@drawable/shop_icon"
