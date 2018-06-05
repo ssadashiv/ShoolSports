@@ -214,6 +214,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 public void yeslistener(JSONObject jsonObject) {
                     showProgress(false);
                     try {
+                        //todo 控制用户登录
                         if (jsonObject.getInt("status") == 1) {
 
                             gotohome();
@@ -287,6 +288,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         if ((boolean)UtilsImp.spget("checked_ispass",false)){
             mEmailView.setText((String)UtilsImp.spget("ck_user",""));
             mPasswordView.setText((String)UtilsImp.spget("ck_pass",""));
+            mCbIspass.setChecked(true);
+        }else {
+            mCbIspass.setChecked(false);
         }
 
     }

@@ -66,7 +66,7 @@ public class NetUtils {
 
             for (Map.Entry<String,String> entry : map.entrySet()){
 
-                url=url+entry.getKey()+"="+"'"+entry.getValue()+"'"+"&";
+                url=url+entry.getKey()+"="+entry.getValue()+"&";
 
             }
 
