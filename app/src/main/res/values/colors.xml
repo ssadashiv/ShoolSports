@@ -4,6 +4,11 @@
     <color name="colorPrimaryDark">#828283</color>
     <color name="colorAccent">#363636</color>
     <color name="titlecoloer">#dedede</color>
+    <color name="coloer_red">#e61911</color>
+    <color name="coloer_greed">#0ce440</color>
+    <color name="coloer_bluer">#1f8bcf</color>
+    <color name="pain_xian">#dedede</color>
+    <color name="coloer_orjue">#d96928</color>
 
     <!--底部buttom 选中的颜色-->
     <color name="tab_checked">#ffffff</color>

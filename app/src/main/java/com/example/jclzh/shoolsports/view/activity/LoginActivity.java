@@ -9,7 +9,6 @@ import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -27,14 +26,26 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jclzh.shoolsports.R;
+import com.example.jclzh.shoolsports.model.Application.ApplicationDate;
+import com.example.jclzh.shoolsports.utils.MLog;
+import com.example.jclzh.shoolsports.utils.Net.NetListener;
+import com.example.jclzh.shoolsports.utils.Net.NetUtils;
+import com.example.jclzh.shoolsports.utils.ToastUtil;
+import com.example.jclzh.shoolsports.utils.UtilsImp;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -54,21 +65,28 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private UserLoginTask mAuthTask = null;
+
 
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private AlertDialog loginingadialog;
+    private CheckBox mCbIspass;
+    private CheckBox mCbIslogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //判断是否自动登录
+        if ((Boolean) UtilsImp.spget("checked_islogin",false)){
+            startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+        }
+
         setContentView(R.layout.activity_login);
+        initView();
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -95,7 +113,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        inituserdata();
     }
+
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
@@ -114,7 +134,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
             Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
+                    .setAction(android.R.string.ok, new OnClickListener() {
                         @Override
                         @TargetApi(Build.VERSION_CODES.M)
                         public void onClick(View v) {
@@ -145,9 +165,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * app验证后登录的逻辑
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
+
 
         // Reset errors.
         mEmailView.setError(null);
@@ -183,30 +201,115 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
+            // 网络请求进行登录
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            MLog.i("登录邮箱:", mEmailView.getText().toString());
+            MLog.i("登录密码:", mPasswordView.getText().toString());
+
+            Map<String, String> map = new HashMap();
+            map.put("study_code", mEmailView.getText().toString());
+            map.put("pwd", mPasswordView.getText().toString());
+            NetUtils.jsonget(ApplicationDate.API_LOGIN_URL, map, new NetListener() {
+                @Override
+                public void yeslistener(JSONObject jsonObject) {
+                    showProgress(false);
+                    try {
+                        if (jsonObject.getInt("status") == 1) {
+
+                            gotohome();
+
+
+
+                        } else {
+                            ToastUtil.show(LoginActivity.this, "密码错误请重试", 1 * 1000);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void errorlistener(String error) {
+                    showProgress(false);
+                    ToastUtil.show(LoginActivity.this, "当前网络连接失败", 1 * 1000);
+                }
+            });
+
+
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//
+//                    startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+//                }
+//            },1000);
         }
     }
 
     /**
+     * 登录成功进入到主界面
+     */
+    private void gotohome() {
+        boolean checked_islogin = mCbIslogin.isChecked();
+        boolean checked_ispass = mCbIspass.isChecked();
+
+        if (checked_islogin){
+            UtilsImp.spput("checked_islogin",true);
+        }else {
+            UtilsImp.spput("checked_islogin",false);
+
+        }
+
+        if (checked_ispass){
+
+            UtilsImp.spput("checked_ispass",true);
+            UtilsImp.spput("ck_user",mEmailView.getText().toString().trim());
+            UtilsImp.spput("ck_pass",mPasswordView.getText().toString().trim());
+
+
+        }else {
+
+            UtilsImp.spput("checked_ispass",false);
+            UtilsImp.spput("ck_user","");
+            UtilsImp.spput("ck_pass","");
+
+
+        }
+
+        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+    }
+
+    /**
+     * 判断是否登陆过记录密码
+     */
+    private void inituserdata() {
+
+        if ((boolean)UtilsImp.spget("checked_ispass",false)){
+            mEmailView.setText((String)UtilsImp.spget("ck_user",""));
+            mPasswordView.setText((String)UtilsImp.spget("ck_pass",""));
+        }
+
+    }
+
+
+    /**
      * 判断用户名是否符合规则
+     *
      * @param email
      * @return
      */
     private boolean isEmailValid(String email) {
 
-        if (email.length()>5){
-            return  true ;
-        }else {
-            return  false ;
+        if (email.length() > 5) {
+            return true;
+        } else {
+            return false;
         }
     }
 
     /**
      * 判断密码是否符合规则
+     *
      * @param password
      * @return
      */
@@ -221,55 +324,28 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private void showProgress(final boolean show) {
 
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-        View view = getLayoutInflater().inflate(R.layout.logininglayout, null);
-        ImageView dialogimgview = view.findViewById(R.id.ivProgress);
-        //设置旋转动画
-        RotateAnimation rotate  = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        LinearInterpolator lin = new LinearInterpolator();
-        rotate.setInterpolator(lin);
-        rotate.setDuration(2000);//设置动画持续周期
-        rotate.setRepeatCount(-1);//设置重复次数
-        rotate.setFillAfter(true);//动画执行完后是否停留在执行完的状态
-        rotate.setStartOffset(10);//执行前的等待时间
-        dialogimgview.setAnimation(rotate);
+        if (show) {
 
-        builder.setView(view);
-        AlertDialog loginingadialog = builder.show();
-        loginingadialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.touming));//设置透明的背景
+            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+            View view = getLayoutInflater().inflate(R.layout.logininglayout, null);
+            ImageView dialogimgview = view.findViewById(R.id.ivProgress);
+            //设置旋转动画
+            RotateAnimation rotate = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            LinearInterpolator lin = new LinearInterpolator();
+            rotate.setInterpolator(lin);
+            rotate.setDuration(2000);//设置动画持续周期
+            rotate.setRepeatCount(-1);//设置重复次数
+            rotate.setFillAfter(true);//动画执行完后是否停留在执行完的状态
+            rotate.setStartOffset(10);//执行前的等待时间
+            dialogimgview.setAnimation(rotate);
 
+            builder.setView(view);
+            loginingadialog = builder.show();
+            loginingadialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.touming));//设置透明的背景
 
-        //titile 隐藏并且显示加载porges
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-        //            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-        //
-        //            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        //            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-        //                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-        //                @Override
-        //                public void onAnimationEnd(Animator animation) {
-        //                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        //                }
-        //            });
-        //
-        //            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-        //            mProgressView.animate().setDuration(shortAnimTime).alpha(
-        //                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-        //                @Override
-        //                public void onAnimationEnd(Animator animation) {
-        //                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-        //                }
-        //            });
-        //        } else {
-        //            // The ViewPropertyAnimator APIs are not available, so simply show
-        //            // and hide the relevant UI components.
-        //            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-        //            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        //        }
-
+        } else {
+            loginingadialog.dismiss();
+        }
 
 
     }
@@ -317,6 +393,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView.setAdapter(adapter);
     }
 
+    private void initView() {
+        mCbIspass = (CheckBox) findViewById(R.id.cb_ispass);
+        mCbIslogin = (CheckBox) findViewById(R.id.cb_islogin);
+    }
+
 
     private interface ProfileQuery {
         String[] PROJECTION = {
@@ -325,64 +406,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         };
 
         int ADDRESS = 0;
-        int IS_PRIMARY = 1;
     }
 
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
-        private final String mPassword;
-
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            try {
-                // Simulate network access.
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                //todo  登录成功后的验证
-                startActivity(new Intent(LoginActivity.this,HomeActivity.class));
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
-    }
 }
 

@@ -22,6 +22,7 @@ import com.example.jclzh.shoolsports.view.fragment.CommunityFragment;
 import com.example.jclzh.shoolsports.view.fragment.MapPathFragment;
 import com.example.jclzh.shoolsports.view.fragment.SportFragment;
 import com.example.jclzh.shoolsports.view.fragment.UserFragment;
+import com.example.jclzh.shoolsports.view.myview.HomeViewpager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class HomeActivity extends AppCompatActivity
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private Toolbar toolbar;
-    private ViewPager viewPagercont;
+    private HomeViewpager viewPagercont;
     private BottomNavigationView bottomNavigationView;
     private NavigationView navigationView;
     private Bundle savedInstanceState ;

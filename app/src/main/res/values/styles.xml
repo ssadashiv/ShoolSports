@@ -14,6 +14,10 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="take_photo_anim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/pop_exit_anim</item>
+    </style>
 
     <!-- 登录网络加载dialog样式 -->
     <!--<style name="Loginadialog" parent="@android:style/Theme.Dialog">-->

@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.example.jclzh.shoolsports.R;
 
-public class UserActivity extends AppCompatActivity {
+public class    UserActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

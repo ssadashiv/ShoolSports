@@ -38,10 +38,16 @@ public class ApplicationDate {
       public  static  final  String  APPSPNAME  = "SHOOLSPORTS";
 
       //服务器IP地址
-      public static   final  String IP = "";
-
+      public static   final  String IP = "192.168.1.127";
       //服务器端口
-      public  static   final  int  port = 8080 ;
+      public  static   final  int  PORT = 7001 ;
+
+      //服务器基础URL
+      public   static   final  String   chidurl= "http://"+IP+":"+PORT;
+
+      //登录API
+
+      public   static   final  String   API_LOGIN_URL= "http://"+IP+":"+PORT+"/api/login";
 
 
 

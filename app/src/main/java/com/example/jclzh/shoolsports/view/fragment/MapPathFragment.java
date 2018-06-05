@@ -4,9 +4,15 @@ package com.example.jclzh.shoolsports.view.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -23,6 +29,7 @@ import com.baidu.mapapi.map.MyLocationConfiguration.LocationMode;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.example.jclzh.shoolsports.R;
+import com.example.jclzh.shoolsports.view.myview.TakePhotoPopWin;
 
 /**
  * 地图模块
@@ -32,7 +39,6 @@ public class MapPathFragment extends Fragment {
 
 
     private MapView mHomeMapview;
-
 
 
     /**
@@ -73,10 +79,8 @@ public class MapPathFragment extends Fragment {
      * 方向传感器X方向的值
      */
     private int mXDirection;
-
-
-
-
+    private ImageView settingview;
+    private WindowManager.LayoutParams params;
 
 
     public MapPathFragment() {
@@ -101,6 +105,14 @@ public class MapPathFragment extends Fragment {
 
     private void initView(View view) {
         mHomeMapview = (MapView) view.findViewById(R.id.home_mapview);
+        //底部弹出
+        //        settingview = view.findViewById(R.id.iv_mapsetting);
+        //        settingview.setOnClickListener(new View.OnClickListener() {
+        //            @Override
+        //            public void onClick(View v) {
+        //                showPopFormBottom(v);
+        //            }
+        //        });
         mBaiduMap = mHomeMapview.getMap();
         // 第一次定位
         isFristLocation = true;
@@ -163,11 +175,9 @@ public class MapPathFragment extends Fragment {
     /**
      * 实现实位回调监听
      */
-    public class MyLocationListener implements BDLocationListener
-    {
+    public class MyLocationListener implements BDLocationListener {
         @Override
-        public void onReceiveLocation(BDLocation location)
-        {
+        public void onReceiveLocation(BDLocation location) {
 
             // map view 销毁后不在处理新接收的位置
             if (location == null || mHomeMapview == null)
@@ -191,8 +201,7 @@ public class MapPathFragment extends Fragment {
                     mCurrentMode, true, mCurrentMarker);
             mBaiduMap.setMyLocationConfigeration(config);
             // 第一次定位时，将地图位置移动到当前位置
-            if (isFristLocation)
-            {
+            if (isFristLocation) {
                 isFristLocation = false;
                 LatLng ll = new LatLng(location.getLatitude(),
                         location.getLongitude());
@@ -208,8 +217,7 @@ public class MapPathFragment extends Fragment {
     public void onStart() {
         // 开启图层定位
         mBaiduMap.setMyLocationEnabled(true);
-        if (!mLocationClient.isStarted())
-        {
+        if (!mLocationClient.isStarted()) {
             mLocationClient.start();
         }
         // 开启方向传感器
@@ -231,16 +239,12 @@ public class MapPathFragment extends Fragment {
     }
 
 
-
-
     /**
      * 实现实位回调监听
      */
-    public class Mylocationlisener implements BDLocationListener
-    {
+    public class Mylocationlisener implements BDLocationListener {
         @Override
-        public void onReceiveLocation(BDLocation location)
-        {
+        public void onReceiveLocation(BDLocation location) {
 
             // map view 销毁后不在处理新接收的位置
             if (location == null || mHomeMapview == null)
@@ -263,8 +267,7 @@ public class MapPathFragment extends Fragment {
                     mCurrentMode, true, mCurrentMarker);
             mBaiduMap.setMyLocationConfiguration(config);
             // 第一次定位时，将地图位置移动到当前位置
-            if (isFristLocation)
-            {
+            if (isFristLocation) {
                 isFristLocation = false;
                 LatLng ll = new LatLng(location.getLatitude(),
                         location.getLongitude());
@@ -273,6 +276,33 @@ public class MapPathFragment extends Fragment {
             }
         }
 
+    }
+
+
+    public void showPopFormBottom(View view) {
+        TakePhotoPopWin takePhotoPopWin = new TakePhotoPopWin(getActivity(), new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "弹出监听方法被执行", Toast.LENGTH_SHORT).show();
+            }
+        });
+        //        设置Popupwindow显示位置（从底部弹出）
+        takePhotoPopWin.showAtLocation(getActivity().findViewById(R.id.bottomNavigationView), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, -45);
+        params = getActivity().getWindow().getAttributes();
+        //当弹出Popupwindow时，背景变半透明
+        params.alpha = 0.7f;
+        getActivity().getWindow().setAttributes(params);
+        //设置Popupwindow关闭监听，当Popupwindow关闭，背景恢复1f
+        takePhotoPopWin.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                params = getActivity().getWindow().getAttributes();
+                params.alpha = 1f;
+                getActivity().getWindow().setAttributes(params);
+            }
+        });
+
+        //  takePhotoPopWin.lis
     }
 
 

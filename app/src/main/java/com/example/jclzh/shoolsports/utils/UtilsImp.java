@@ -117,7 +117,7 @@ public class UtilsImp {
      * 获取端口
      */
     public static int getport() {
-        return ApplicationDate.port;
+        return ApplicationDate.PORT;
     }
 
     ;
