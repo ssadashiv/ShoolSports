@@ -38,7 +38,7 @@ public class ApplicationDate {
       public  static  final  String  APPSPNAME  = "SHOOLSPORTS";
 
       //服务器IP地址
-      public static   final  String IP = "192.168.1.127";
+      public static   final  String IP = "192.168.1.117";
       //服务器端口
       public  static   final  int  PORT = 7001 ;
 
@@ -51,5 +51,7 @@ public class ApplicationDate {
 
 
 
+      //运动项目
+      public  static  final  String []   TABSPORTS = {"步行","跑步","爬山","游泳"} ;
 
 }

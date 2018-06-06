@@ -115,4 +115,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_user">个人中心</string>
+    <string name="isnotstart_gps">检测到您目前暂未开启GPS定位服务,这将会影响到您的用户体验</string>
+
 </resources>

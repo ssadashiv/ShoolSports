@@ -1,6 +1,7 @@
 package com.example.jclzh.shoolsports.view.activity;
 
 import android.content.Intent;
+import android.gesture.GestureUtils;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.example.jclzh.shoolsports.R;
 import com.example.jclzh.shoolsports.presenter.GuidePresenter;
 import com.example.jclzh.shoolsports.presenter.GuidePresenterInterface;
+import com.example.jclzh.shoolsports.utils.UtilsImp;
 import com.example.jclzh.shoolsports.view.fragment.GuideFragment;
 
 public class GuideActivity extends AppCompatActivity implements View.OnClickListener {
@@ -64,8 +66,9 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
             public void run() {
                 //todo  判断是否为自动登录
 
-                if (false){
-
+                //判断是否自动登录
+                if ((Boolean) UtilsImp.spget("checked_islogin",false)){
+                    startActivity(new Intent(GuideActivity.this,HomeActivity.class));
                 }else {
                     startActivity(new Intent(GuideActivity.this,LoginActivity.class));
                 }

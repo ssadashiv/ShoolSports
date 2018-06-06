@@ -80,10 +80,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //判断是否自动登录
-        if ((Boolean) UtilsImp.spget("checked_islogin",false)){
-            startActivity(new Intent(LoginActivity.this,HomeActivity.class));
-        }
+
 
         setContentView(R.layout.activity_login);
         initView();

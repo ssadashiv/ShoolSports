@@ -9,7 +9,7 @@
 
 
     <RelativeLayout
-        android:background="@drawable/guide5"
+        android:background="@drawable/guide"
         android:id="@+id/gudie_cont"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

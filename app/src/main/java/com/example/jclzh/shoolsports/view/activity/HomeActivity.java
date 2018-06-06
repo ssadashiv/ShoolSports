@@ -1,6 +1,9 @@
 package com.example.jclzh.shoolsports.view.activity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
@@ -9,14 +12,20 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.baidu.mapapi.NetworkUtil;
 import com.baidu.mapapi.SDKInitializer;
 import com.example.jclzh.shoolsports.R;
 import com.example.jclzh.shoolsports.model.adatapter.HomepagerAdater;
+import com.example.jclzh.shoolsports.utils.NetWorkUtil;
+import com.example.jclzh.shoolsports.utils.ToastUtil;
 import com.example.jclzh.shoolsports.utils.viewutils.BottomNavigationViewHelper;
 import com.example.jclzh.shoolsports.view.fragment.CommunityFragment;
 import com.example.jclzh.shoolsports.view.fragment.MapPathFragment;
@@ -38,6 +47,7 @@ public class HomeActivity extends AppCompatActivity
     private BottomNavigationView bottomNavigationView;
     private NavigationView navigationView;
     private Bundle savedInstanceState ;
+    private TextView mHometvtoobar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +56,10 @@ public class HomeActivity extends AppCompatActivity
         this.savedInstanceState =savedInstanceState;
         //初始化百度地图
 
+        isgps();
         initview();
         initicon();
+
 
     }
 
@@ -89,6 +101,7 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         //设置底部标签栏
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        mHometvtoobar = findViewById(R.id.hometexttoolbar);
        //取消底部的动画效果
        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
        initfragmet();
@@ -115,24 +128,23 @@ public class HomeActivity extends AppCompatActivity
                 switch (item.getItemId()){
                     case R.id.navigation_sport:
                         viewPagercont.setCurrentItem(0);
+                        mHometvtoobar.setText("运动");
                         break;
                     case R.id.navigation_mappath:
                         viewPagercont.setCurrentItem(1);
+                        mHometvtoobar.setText("路线");
+
                         break;
                     case R.id.navigation_communtiy:
                         viewPagercont.setCurrentItem(2);
+                        mHometvtoobar.setText("社区");
                         break;
                     case R.id.navigation_user:
                         viewPagercont.setCurrentItem(3);
+                        mHometvtoobar.setText("我的");
                         break;
 
                 }
-
-
-
-
-
-
 
 
                 return false;
@@ -191,5 +203,39 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    /**
+     * 判断GPS是够开启
+     * @return
+     */
+    public void isgps() {
+
+        boolean gps = NetWorkUtil.isGps(HomeActivity.this);
+        if (!gps){
+            AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+
+            builder.setMessage("检测到您目前暂未开启GPS定位服务,这将会影响到您的用户体验");
+
+            builder.setNegativeButton("暂时不开启", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+
+                }
+            });
+            builder.setPositiveButton("现在去开启", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    // 转到手机设置界面，用户设置GPS
+                    Intent intent = new Intent(
+                            Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(intent);
+                }
+            });
+            builder.show();
+        }
+
     }
 }
