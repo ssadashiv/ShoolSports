@@ -9,7 +9,7 @@
         <ImageView
             android:id="@+id/iv_head_bg"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="180dp"
             android:background="@drawable/head" />
 
         <com.example.jclzh.shoolsports.view.customview.CircleImageView
@@ -17,10 +17,11 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="35dp"
             android:src="@drawable/head" />
 
         <TextView
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/iv_head"
@@ -32,11 +33,13 @@
 
         <LinearLayout
             android:id="@+id/ll_content"
-            android:layout_width="360dp"
-            android:layout_height="60dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="150dp"
             android:background="@drawable/user_info_bg"
             android:gravity="center"
             android:orientation="horizontal">
@@ -51,7 +54,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="关注" />
+                    android:text="等级" />
 
                 <TextView
                     android:id="@+id/tv_user_attention"
@@ -70,7 +73,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="粉丝" />
+                    android:text="积分" />
 
                 <TextView
                     android:id="@+id/tv_user_fans"
@@ -90,7 +93,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="动态" />
+                    android:text="健康值" />
 
                 <TextView
                     android:id="@+id/tv_user_state"

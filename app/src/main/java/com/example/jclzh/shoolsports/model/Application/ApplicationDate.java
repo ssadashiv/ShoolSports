@@ -38,18 +38,17 @@ public class ApplicationDate {
       public  static  final  String  APPSPNAME  = "SHOOLSPORTS";
 
       //服务器IP地址
-      public static   final  String IP = "192.168.1.127";
+      public static   final  String IP = "192.168.1.117";
       //服务器端口
-      public  static   final  int  PORT = 7001 ;
+      public  static   final  int  PORT = 7001;
 
       //服务器基础URL
       public   static   final  String   chidurl= "http://"+IP+":"+PORT;
 
       //登录API
-
       public   static   final  String   API_LOGIN_URL= "http://"+IP+":"+PORT+"/api/login";
 
-
-
+      //上传图片的url
+      public   static   final  String   API_UPLOAD_IMAGE_URL= "http://192.168.1.127:"+PORT+"/api/uploadimage";
 
 }

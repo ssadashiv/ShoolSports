@@ -61,6 +61,16 @@ public class PersonageAdapter extends BaseAdapter {
                         //个人资料
                         context.startActivity(new Intent(context, PersonalDataActivity.class));
                         break;
+                    case 1:
+                        //打卡记录
+                        break;
+                    case 2:
+                        //
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
                 }
             }
         });

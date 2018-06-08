@@ -10,6 +10,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -36,4 +40,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation files('libs/volley.jar')
     implementation files('libs/BaiduLBS_Android.jar')
+    implementation 'org.apache.httpcomponents:httpmime:4.3.5'
+    implementation 'org.apache.httpcomponents:httpcore:4.3.2'
+    implementation 'com.google.zxing:core:3.3.3'
 }
