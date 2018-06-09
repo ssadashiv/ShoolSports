@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.jclzh.shoolsports"
-        minSdkVersion 21
+        minSdkVersion 22
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -23,6 +23,7 @@ android {
             jni.srcDirs = []
         }
     }
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
@@ -38,4 +39,6 @@ dependencies {
     implementation files('libs/BaiduLBS_Android.jar')
     implementation files('libs/lite-orm-1.7.0.jar')
     compile 'com.orhanobut:logger:1.15'
+    implementation files('libs/MPAndroidChart-v2.1.5.jar')
+    implementation files('libs/BaiduTraceSDK_v3_0_7.jar')
 }

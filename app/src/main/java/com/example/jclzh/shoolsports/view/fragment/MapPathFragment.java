@@ -35,7 +35,7 @@ import com.example.jclzh.shoolsports.view.myview.TakePhotoPopWin;
  * 地图模块
  * A simple {@link Fragment} subclass.
  */
-public class MapPathFragment extends Fragment {
+public class    MapPathFragment extends Fragment {
 
 
     private MapView mHomeMapview;

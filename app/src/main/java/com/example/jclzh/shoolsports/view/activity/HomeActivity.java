@@ -15,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ import com.example.jclzh.shoolsports.view.fragment.CommunityFragment;
 import com.example.jclzh.shoolsports.view.fragment.MapPathFragment;
 import com.example.jclzh.shoolsports.view.fragment.SportFragment;
 import com.example.jclzh.shoolsports.view.fragment.UserFragment;
+import com.example.jclzh.shoolsports.view.fragment.sporttabfragment.Sport_climbFragment;
 import com.example.jclzh.shoolsports.view.myview.HomeViewpager;
 
 import java.util.ArrayList;
@@ -48,7 +50,8 @@ public class HomeActivity extends AppCompatActivity
     private NavigationView navigationView;
     private Bundle savedInstanceState ;
     private TextView mHometvtoobar;
-
+    //记录用户首次点击返回键的时间
+    private long firstTime=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +64,24 @@ public class HomeActivity extends AppCompatActivity
         initicon();
 
 
+    }
+
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                long secondTime=System.currentTimeMillis();
+                if(secondTime-firstTime>2000){
+                    Toast.makeText(HomeActivity.this,"再按一次退出程序",Toast.LENGTH_SHORT).show();
+                    firstTime=secondTime;
+                    return true;
+                }else{
+                    finish();
+                }
+                break;
+        }
+        return super.onKeyUp(keyCode, event);
     }
 
     /**
@@ -133,7 +154,6 @@ public class HomeActivity extends AppCompatActivity
                     case R.id.navigation_mappath:
                         viewPagercont.setCurrentItem(1);
                         mHometvtoobar.setText("路线");
-
                         break;
                     case R.id.navigation_communtiy:
                         viewPagercont.setCurrentItem(2);
@@ -186,17 +206,26 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
         if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+            //今日运动
+        }else if (id == R.id.nav_gallery) {
+            //历史记录
+            startActivity(new Intent(HomeActivity.this,HistoricalActivity.class));
 
         } else if (id == R.id.nav_slideshow) {
+            //运动路线
 
         } else if (id == R.id.nav_manage) {
+            //运动排名.
 
-        } else if (id == R.id.nav_share) {
+        }else if (id ==R.id.nav_shequ){
+            //健康评估
 
-        } else if (id == R.id.nav_send) {
+        } else if (id==R.id.nav_shop){
+            //积分商场
+        }else if (id == R.id.nav_share) {
+            //在线换肤
 
         }
 

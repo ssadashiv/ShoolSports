@@ -48,6 +48,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         if (isfist) {
             //用户首次启动APP 引导界面
             getSupportFragmentManager().beginTransaction().replace(R.id.gudie_cont, new GuideFragment()).commit();
+
         } else {
             //用户非首次启动APP
             startanimode();
@@ -69,8 +70,10 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
                 //判断是否自动登录
                 if ((Boolean) UtilsImp.spget("checked_islogin",false)){
                     startActivity(new Intent(GuideActivity.this,HomeActivity.class));
+                    finish();
                 }else {
                     startActivity(new Intent(GuideActivity.this,LoginActivity.class));
+                    finish();
                 }
 
 

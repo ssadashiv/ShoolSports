@@ -7,15 +7,18 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.jclzh.shoolsports.R;
 import com.example.jclzh.shoolsports.model.service.StepService;
+import com.example.jclzh.shoolsports.utils.MLog;
 import com.example.jclzh.shoolsports.utils.UpdateUiCallBack;
 import com.example.jclzh.shoolsports.utils.UtilsImp;
 import com.example.jclzh.shoolsports.view.myview.StepArcView;
@@ -45,6 +48,12 @@ public class Sport_walkFragment extends Fragment {
         return  view  ;
     }
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
     private void initview(View view) {
         cc = (StepArcView) view.findViewById(R.id.cc);
         tv_isSupport = (TextView) view.findViewById(R.id.tv_isSupport);
@@ -65,15 +74,15 @@ public class Sport_walkFragment extends Fragment {
 
 
     private boolean isBind = false;
-
     /**
      * 开启计步服务
      */
     private void setupService() {
         Intent intent = new Intent(getActivity(), StepService.class);
         isBind = getActivity().bindService(intent, conn, Context.BIND_AUTO_CREATE);
-       getActivity().startService(intent);
+         getActivity().startService(intent);
     }
+
 
     /**
      * 用于查询应用服务（application Service）的状态的一种interface，
@@ -97,6 +106,7 @@ public class Sport_walkFragment extends Fragment {
             stepService.registerCallback(new UpdateUiCallBack() {
                 @Override
                 public void updateUi(int stepCount) {
+                    MLog.i("服务","回调步数监听");
                     String planWalk_QTY = (String) UtilsImp.spget("planWalk_QTY", "7000");
                     cc.setCurrentCount(Integer.parseInt(planWalk_QTY), stepCount);
                 }

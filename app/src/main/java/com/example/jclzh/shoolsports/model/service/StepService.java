@@ -25,6 +25,7 @@ import com.example.jclzh.shoolsports.model.accelerometer.StepValuePassListener;
 import com.example.jclzh.shoolsports.model.bean.StepData;
 import com.example.jclzh.shoolsports.utils.DbUtils;
 import com.example.jclzh.shoolsports.utils.UpdateUiCallBack;
+import com.example.jclzh.shoolsports.utils.UtilsImp;
 import com.example.jclzh.shoolsports.view.activity.HomeActivity;
 import com.orhanobut.logger.Logger;
 
@@ -107,6 +108,7 @@ public class StepService extends Service implements SensorEventListener {
         startTimeCount();
 
     }
+
 
     /**
      * 获取当天日期
@@ -532,7 +534,6 @@ public class StepService extends Service implements SensorEventListener {
      */
     private void save() {
         int tempStep = CURRENT_STEP;
-
         List<StepData> list = DbUtils.getQueryByWhere(StepData.class, "today", new String[]{CURRENT_DATE});
         if (list.size() == 0 || list.isEmpty()) {
             StepData data = new StepData();

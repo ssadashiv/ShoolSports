@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.jclzh.shoolsports.R;
 import com.example.jclzh.shoolsports.model.Application.ApplicationDate;
@@ -29,6 +30,7 @@ public class SportFragment extends Fragment {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private List<Fragment> fragmentlist;
 
     public SportFragment() {
         // Required empty public constructor
@@ -46,12 +48,12 @@ public class SportFragment extends Fragment {
     }
 
     private void initdata() {
-        List<Fragment> fragmentlist  =  new ArrayList<>();
+        fragmentlist = new ArrayList<>();
         fragmentlist.add(new Sport_walkFragment());
         fragmentlist.add(new Sport_runFragment());
         fragmentlist.add(new Sport_swimFragment());
         fragmentlist.add(new Sport_climbFragment());
-        viewPager.setAdapter(new SportFragmentAdatapter(getActivity().getSupportFragmentManager(),fragmentlist,ApplicationDate.TABSPORTS));
+        viewPager.setAdapter(new SportFragmentAdatapter(getActivity().getSupportFragmentManager(), fragmentlist,ApplicationDate.TABSPORTS));
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -61,4 +63,11 @@ public class SportFragment extends Fragment {
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+//        viewPager.setAdapter(new SportFragmentAdatapter(getActivity().getSupportFragmentManager(),fragmentlist,ApplicationDate.TABSPORTS));
+
+        viewPager.setCurrentItem(0);
+    }
 }
