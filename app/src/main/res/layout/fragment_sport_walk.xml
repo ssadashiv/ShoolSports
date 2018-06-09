@@ -70,18 +70,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp" />
                     <TextView
-                        android:textSize="17sp"
+                        android:textSize="12sp"
                         android:maxLines="1"
-                        android:textColor="@color/coloer_hei"
+                        android:textColor="#5c5c5c"
                         android:gravity="center"
                         android:text="目标步数"
                         android:layout_weight="0.5"
                         android:layout_width="match_parent"
                         android:layout_height="0dp" />
                     <TextView
+                        android:textSize="12sp"
                         android:layout_marginBottom="5dp"
                         android:maxLines="1"
-                        android:textColor="@color/coloer_hei"
+                        android:textColor="#5c5c5c"
                         android:gravity="center"
                         android:text="20000步"
                         android:layout_weight="0.5"
