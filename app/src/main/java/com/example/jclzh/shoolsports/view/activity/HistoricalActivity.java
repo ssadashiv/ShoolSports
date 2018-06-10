@@ -34,7 +34,28 @@ public class HistoricalActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_historical);
         initView();
         inintdata();
+        initchar();
 
+
+    }
+
+    /**
+     *
+     */
+    private void initchar() {
+//        //设置图表的描述
+//        lineChart1.setDescription("hhhhhh");
+//        //设置x轴的数据
+//        int numX = 24;
+//        //设置y轴的数据
+//        float[] datas1 = {536, 123, 769, 432, 102, 26, 94, 85, 536, 123, 769, 432, 102, 26, 94, 85, 536, 123, 769, 432, 102, 26, 94, 85};//数据
+//        //设置折线的名称
+//        LineChartManager2.setLineName("当月值");
+//        //设置第二条折线y轴的数据
+//        LineChartManager2.setLineName1("上月值");
+//        //创建两条折线的图表
+//        lineData = LineChartManager2.initSingleLineChart(this, lineChart1, numX, datas1);
+//        LineChartManager2.initDataStyle(lineChart1, lineData, this);
     }
 
     private void initView() {

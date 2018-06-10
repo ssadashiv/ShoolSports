@@ -48,6 +48,7 @@ public class ApplicationDate {
       //登录API
 
       public   static   final  String   API_LOGIN_URL= "http://"+IP+":"+PORT+"/api/login";
+      public   static   final  String   API_LOGIN_RENWU= "http://"+IP+":"+PORT+"/api/getmyselftask";
 
 
 

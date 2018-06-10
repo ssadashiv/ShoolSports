@@ -213,10 +213,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     try {
                         //todo 控制用户登录
                         if (jsonObject.getInt("status") == 1) {
-
+                            UtilsImp.spput("user",jsonObject.toString());
                             gotohome();
-
-
 
                         } else {
                             ToastUtil.show(LoginActivity.this, "密码错误请重试", 1 * 1000);
@@ -270,7 +268,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             UtilsImp.spput("checked_ispass",false);
             UtilsImp.spput("ck_user","");
             UtilsImp.spput("ck_pass","");
-
 
         }
 

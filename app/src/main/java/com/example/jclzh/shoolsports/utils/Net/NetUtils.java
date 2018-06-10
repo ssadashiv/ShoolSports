@@ -8,7 +8,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.jclzh.shoolsports.model.Application.AppApplication;
+import com.example.jclzh.shoolsports.model.bean.User;
 import com.example.jclzh.shoolsports.utils.MLog;
+import com.example.jclzh.shoolsports.utils.UtilsImp;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,6 +29,7 @@ public class NetUtils {
     private  static JSONObject jsonObject;
     private static JsonObjectRequest jsonObjectRequest;
 
+    private  static Gson  gson = new Gson();
     /**
      * Json 请求
      *
@@ -59,15 +63,17 @@ public class NetUtils {
      * @param netListener
      */
     public static void  jsonget(String url  ,Map<String ,String>   map,final NetListener netListener){
+        String   jsonuser = (String) UtilsImp.spget("user", "");
+        User user = gson.fromJson(jsonuser, User.class);
+        map.put("token",String.valueOf(user.getToken()));
 
         MLog.i("URLurl拼装前:",url);
         url=url+"?";
         if (map!=null){
 
+
             for (Map.Entry<String,String> entry : map.entrySet()){
-
                 url=url+entry.getKey()+"="+entry.getValue()+"&";
-
             }
 
         }

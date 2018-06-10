@@ -21,7 +21,7 @@
 
     <style name="bg_shapetouming">
         <item name="android:background">#9b9c9e</item>
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">1dp</item>
         <item name="android:layout_height">match_parent</item>
     </style>
 

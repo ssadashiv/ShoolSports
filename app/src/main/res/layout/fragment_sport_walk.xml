@@ -24,7 +24,7 @@
             android:id="@+id/cc"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="50dp" />
+            android:layout_marginTop="10dp" />
 
 
 
@@ -79,12 +79,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp" />
                     <TextView
+                        android:id="@+id/tv_mubiao"
                         android:textSize="12sp"
                         android:layout_marginBottom="5dp"
                         android:maxLines="1"
                         android:textColor="#5c5c5c"
                         android:gravity="center"
-                        android:text="20000步"
+                        android:text="0步"
                         android:layout_weight="0.5"
                         android:layout_width="match_parent"
                         android:layout_height="0dp" />
@@ -93,23 +94,83 @@
                 </LinearLayout>
                 <TextView style="@style/bg_shapetouming" />
                 <LinearLayout
+                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@drawable/juli"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                    <TextView
+                        android:textSize="12sp"
+                        android:maxLines="1"
+                        android:textColor="#5c5c5c"
+                        android:gravity="center"
+                        android:text="步行距离"
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                    <TextView
+                        android:id="@+id/tv_juli"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="5dp"
+                        android:maxLines="1"
+                        android:textColor="#5c5c5c"
+                        android:gravity="center"
+                        android:text="0步"
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+
+
+
 
                 </LinearLayout>
                 <TextView style="@style/bg_shapetouming" />
 
                 <LinearLayout
+                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent">
+
+                    <ImageView
+                        android:src="@drawable/kaluli"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                    <TextView
+                        android:id="@+id/tv_kaluli"
+                        android:textSize="12sp"
+                        android:maxLines="1"
+                        android:textColor="#5c5c5c"
+                        android:gravity="center"
+                        android:text="卡路里"
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                    <TextView
+                        android:textSize="12sp"
+                        android:layout_marginBottom="5dp"
+                        android:maxLines="1"
+                        android:textColor="#5c5c5c"
+                        android:gravity="center"
+                        android:text="0卡"
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+
+
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <TextView
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:background="#9b9c9e"
                 android:layout_width="match_parent"
                 android:layout_height="1dp" />
@@ -121,25 +182,102 @@
 
 
                 <LinearLayout
+                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent">
 
+                    <ImageView
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/jindu"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                    <TextView
+                        android:textSize="12sp"
+                        android:maxLines="1"
+                        android:textColor="#5c5c5c"
+                        android:gravity="center"
+                        android:text="完成进度"
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                    <TextView
+                        android:id="@+id/tv_jindu"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="5dp"
+                        android:maxLines="1"
+                        android:textColor="#5c5c5c"
+                        android:gravity="center"
+                        android:text="0%"
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
                 </LinearLayout>
                 <TextView style="@style/bg_shapetouming" />
 
                 <LinearLayout
+                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent">
 
+                    <ImageView
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/sudu"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                    <TextView
+                        android:id="@+id/tv_shisu"
+                        android:textSize="12sp"
+                        android:maxLines="1"
+                        android:textColor="#5c5c5c"
+                        android:gravity="center"
+                        android:text="当前时速"
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                    <TextView
+                        android:textSize="12sp"
+                        android:layout_marginBottom="5dp"
+                        android:maxLines="1"
+                        android:textColor="#5c5c5c"
+                        android:gravity="center"
+                        android:text="0km/h"
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
                 </LinearLayout>
                 <TextView style="@style/bg_shapetouming" />
 
                 <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/yunyin"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                    <TextView
+                        android:id="@+id/tv_yuyin"
+                        android:textSize="12sp"
+                        android:maxLines="1"
+                        android:textColor="#5c5c5c"
+                        android:gravity="center"
+                        android:text="关闭"
+                        android:layout_weight="0.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                    <Switch
+                        android:id="@+id/switvh_yuyin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 

@@ -63,6 +63,13 @@ public class StepArcView extends View {
     }
 
 
+    /**
+     * 获取所走步数
+     * @return
+     */
+    public  String  getstepNumber(){
+        return stepNumber ;
+    }
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
