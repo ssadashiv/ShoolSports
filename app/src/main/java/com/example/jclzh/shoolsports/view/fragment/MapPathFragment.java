@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
@@ -35,7 +34,7 @@ import com.example.jclzh.shoolsports.view.myview.TakePhotoPopWin;
  * 地图模块
  * A simple {@link Fragment} subclass.
  */
-public class    MapPathFragment extends Fragment {
+public class MapPathFragment extends Fragment {
 
 
     private MapView mHomeMapview;

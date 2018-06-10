@@ -8,6 +8,7 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -24,6 +25,10 @@ android {
         }
     }
     buildToolsVersion '27.0.3'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 dependencies {
@@ -42,4 +47,9 @@ dependencies {
     compile 'com.orhanobut:logger:1.15'
     implementation files('libs/MPAndroidChart-v2.1.5.jar')
     implementation files('libs/BaiduTraceSDK_v3_0_7.jar')
+    implementation 'com.jcodecraeer:xrecyclerview:1.5.8'
+    implementation ('com.github.bumptech.glide:glide:4.7.1'){
+        exclude group: 'com.android.support'
+    }
+
 }

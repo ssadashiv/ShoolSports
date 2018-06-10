@@ -33,11 +33,13 @@ import android.widget.TextView;
 
 import com.example.jclzh.shoolsports.R;
 import com.example.jclzh.shoolsports.model.Application.ApplicationDate;
+import com.example.jclzh.shoolsports.model.bean.User;
 import com.example.jclzh.shoolsports.utils.MLog;
 import com.example.jclzh.shoolsports.utils.Net.NetListener;
 import com.example.jclzh.shoolsports.utils.Net.NetUtils;
 import com.example.jclzh.shoolsports.utils.ToastUtil;
 import com.example.jclzh.shoolsports.utils.UtilsImp;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -79,7 +81,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
 
         setContentView(R.layout.activity_login);
@@ -211,11 +212,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 public void yeslistener(JSONObject jsonObject) {
                     showProgress(false);
                     try {
-                        //todo 控制用户登录
                         if (jsonObject.getInt("status") == 1) {
-                            UtilsImp.spput("user",jsonObject.toString());
+                            UtilsImp.spput("user", jsonObject.toString());
+                            Gson gson = new Gson();
+                            ApplicationDate.USER = gson.fromJson(jsonObject.toString(), User.class);
                             gotohome();
-
                         } else {
                             ToastUtil.show(LoginActivity.this, "密码错误请重试", 1 * 1000);
                         }
@@ -249,25 +250,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         boolean checked_islogin = mCbIslogin.isChecked();
         boolean checked_ispass = mCbIspass.isChecked();
 
-        if (checked_islogin){
-            UtilsImp.spput("checked_islogin",true);
-        }else {
-            UtilsImp.spput("checked_islogin",false);
+        if (checked_islogin) {
+            UtilsImp.spput("checked_islogin", true);
+        } else {
+            UtilsImp.spput("checked_islogin", false);
 
         }
 
-        if (checked_ispass){
+        if (checked_ispass) {
 
-            UtilsImp.spput("checked_ispass",true);
-            UtilsImp.spput("ck_user",mEmailView.getText().toString().trim());
-            UtilsImp.spput("ck_pass",mPasswordView.getText().toString().trim());
+            UtilsImp.spput("checked_ispass", true);
+            UtilsImp.spput("ck_user", mEmailView.getText().toString().trim());
+            UtilsImp.spput("ck_pass", mPasswordView.getText().toString().trim());
 
 
-        }else {
+        } else {
 
-            UtilsImp.spput("checked_ispass",false);
-            UtilsImp.spput("ck_user","");
-            UtilsImp.spput("ck_pass","");
+            UtilsImp.spput("checked_ispass", false);
+            UtilsImp.spput("ck_user", "");
+            UtilsImp.spput("ck_pass", "");
+
 
         }
 
@@ -279,11 +281,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private void inituserdata() {
 
-        if ((boolean)UtilsImp.spget("checked_ispass",false)){
-            mEmailView.setText((String)UtilsImp.spget("ck_user",""));
-            mPasswordView.setText((String)UtilsImp.spget("ck_pass",""));
+        if ((boolean) UtilsImp.spget("checked_ispass", false)) {
+            mEmailView.setText((String) UtilsImp.spget("ck_user", ""));
+            mPasswordView.setText((String) UtilsImp.spget("ck_pass", ""));
             mCbIspass.setChecked(true);
-        }else {
+        } else {
             mCbIspass.setChecked(false);
         }
 
