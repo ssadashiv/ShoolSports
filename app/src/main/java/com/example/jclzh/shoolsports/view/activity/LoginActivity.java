@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -214,7 +215,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         //todo 控制用户登录
                         if (jsonObject.getInt("status") == 1) {
                             UtilsImp.spput("user",jsonObject.toString());
-                            gotohome();
+                                    gotohome();
 
                         } else {
                             ToastUtil.show(LoginActivity.this, "密码错误请重试", 1 * 1000);

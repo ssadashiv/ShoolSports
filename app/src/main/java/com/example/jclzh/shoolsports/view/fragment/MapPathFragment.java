@@ -105,14 +105,7 @@ public class    MapPathFragment extends Fragment {
 
     private void initView(View view) {
         mHomeMapview = (MapView) view.findViewById(R.id.home_mapview);
-        //底部弹出
-        //        settingview = view.findViewById(R.id.iv_mapsetting);
-        //        settingview.setOnClickListener(new View.OnClickListener() {
-        //            @Override
-        //            public void onClick(View v) {
-        //                showPopFormBottom(v);
-        //            }
-        //        });
+
         mBaiduMap = mHomeMapview.getMap();
         // 第一次定位
         isFristLocation = true;
@@ -279,31 +272,7 @@ public class    MapPathFragment extends Fragment {
     }
 
 
-    public void showPopFormBottom(View view) {
-        TakePhotoPopWin takePhotoPopWin = new TakePhotoPopWin(getActivity(), new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "弹出监听方法被执行", Toast.LENGTH_SHORT).show();
-            }
-        });
-        //        设置Popupwindow显示位置（从底部弹出）
-        takePhotoPopWin.showAtLocation(getActivity().findViewById(R.id.bottomNavigationView), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, -45);
-        params = getActivity().getWindow().getAttributes();
-        //当弹出Popupwindow时，背景变半透明
-        params.alpha = 0.7f;
-        getActivity().getWindow().setAttributes(params);
-        //设置Popupwindow关闭监听，当Popupwindow关闭，背景恢复1f
-        takePhotoPopWin.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                params = getActivity().getWindow().getAttributes();
-                params.alpha = 1f;
-                getActivity().getWindow().setAttributes(params);
-            }
-        });
 
-        //  takePhotoPopWin.lis
-    }
 
 
 }

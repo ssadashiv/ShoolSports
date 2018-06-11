@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.android.volley.toolbox.Volley;
 import com.example.jclzh.shoolsports.R;
 import com.example.jclzh.shoolsports.model.Application.ApplicationDate;
+import com.example.jclzh.shoolsports.model.bean.AllRenwu;
 import com.example.jclzh.shoolsports.model.bean.User;
 import com.example.jclzh.shoolsports.model.service.StepService;
 import com.example.jclzh.shoolsports.utils.MLog;
@@ -38,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -84,7 +86,9 @@ public class Sport_walkFragment extends Fragment implements View.OnClickListener
     private TextView mTvYuyin;
     private Handler handler;
     private Runnable runnable;
+    private User user;
 
+    private   int  startcontstep  = 0 ;
     public Sport_walkFragment() {
         // Required empty public constructor
     }
@@ -99,7 +103,39 @@ public class Sport_walkFragment extends Fragment implements View.OnClickListener
         initView(view);
         initData();
         taskrun();
+
+
         return view;
+    }
+
+    /**
+     * 每隔一段时间提交自己的运动信息到服务器
+     */
+    private void savenettask( final  String distance, final User user) {
+
+
+
+                Map map   =   new HashMap();
+                map.put("tag","1");
+                map.put("distance",distance);
+                MLog.d("提交当前米数",distance);
+                map.put("user_id",user.getUser().getUsers_id()+"");
+                map.put("scholl_id",user.getUser().getScholl_id()+"");
+                NetUtils.jsonget(ApplicationDate.API_LOGIN_SAVERENWU, map, new NetListener() {
+                    @Override
+                    public void yeslistener(JSONObject jsonObject) {
+
+
+                        MLog.i("运动步行界面保存到网络服务器成功",jsonObject.toString());
+                    }
+
+                    @Override
+                    public void errorlistener(String error) {
+                        MLog.e("运动步行界面","保存到远程服务器失败"+error);
+                    }
+                });
+
+
     }
 
     private void volleypost() {
@@ -109,13 +145,13 @@ public class Sport_walkFragment extends Fragment implements View.OnClickListener
 
             if (!jsonuser.equals("") ) {
                 Gson gson = new Gson();
-                User user = gson.fromJson(jsonuser, User.class);
+                user = gson.fromJson(jsonuser, User.class);
                 Map map = new HashMap();
                 map.put("user_id",String.valueOf( user.getUser().getUsers_id()));
                 map.put("scholl_id",String.valueOf(user.getUser().getScholl_id()));
 //                map.put("token",String.valueOf(user.getToken()));
 
-                MLog.e("json解析",user.getUser().getUsers_id()+"");
+                MLog.e("json解析", user.getUser().getUsers_id()+"");
                 NetUtils.jsonget(ApplicationDate.API_LOGIN_RENWU, map, new NetListener() {
                     @Override
                     public void yeslistener(JSONObject jsonObject) {
@@ -128,6 +164,11 @@ public class Sport_walkFragment extends Fragment implements View.OnClickListener
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        int    bushucont   = (int) UtilsImp.spget("buxingbushu", 0);
+                        mTvJindu.setText(UtilsImp.getbaifenbi(bushucont,Integer.valueOf(distance)));
+                        mTvKaluli.setText(bushucont*0.1441+"千卡");
+
+
                     }
 
                     @Override
@@ -135,6 +176,7 @@ public class Sport_walkFragment extends Fragment implements View.OnClickListener
                         tv_isSupport.setVisibility(View.VISIBLE);
                         tv_isSupport.setText("请检查网络是否开启");
                         ToastUtil.showShort(getActivity(),"请检查网络无法获取数据");
+
                     }
                 });
 
@@ -159,16 +201,10 @@ public class Sport_walkFragment extends Fragment implements View.OnClickListener
             @Override
             public void run() {
 
-
-
-
-
-
                 if (distance.equals("0")){
                     MLog.e("任务异常","学校目前还没有发布任务");
                 }else {
                     mTvMubiao.setText(distance+"步");
-
                     handler.postDelayed(this,1*1000);
                 }
             }
@@ -193,7 +229,9 @@ public class Sport_walkFragment extends Fragment implements View.OnClickListener
         String planWalk_QTY = (String) UtilsImp.spget("planWalk_QTY", "7000");
         //设置当前步数为0
         cc.setCurrentCount(Integer.parseInt(planWalk_QTY), 0);
+
         setupService();
+
         int    bushucont   = (int) UtilsImp.spget("buxingbushu", 0);
         int stepnuber = bushucont;
         mTvJuli.setText(((float)(stepnuber*0.4))+"米");
@@ -208,12 +246,14 @@ public class Sport_walkFragment extends Fragment implements View.OnClickListener
             String getbaifenbi = UtilsImp.getbaifenbi(stepnuber, Integer.valueOf(distance));
             mTvJindu.setText(getbaifenbi+"%");
         }
+        mTvJindu.setText(UtilsImp.getbaifenbi(bushucont,Integer.valueOf(distance)));
+        mTvKaluli.setText((float)((stepnuber*0.4)*0.01441)+"千卡");
     }
 
 
     private boolean isBind = false;
 
-    /**
+    /**23
      * 开启计步服务
      */
     private void setupService() {
@@ -263,8 +303,19 @@ public class Sport_walkFragment extends Fragment implements View.OnClickListener
                         String getbaifenbi = UtilsImp.getbaifenbi(stepnuber, Integer.valueOf(distance));
                         mTvJindu.setText(getbaifenbi+"%");
                     }
+                    mTvKaluli.setText((float)((stepnuber*0.4)*0.01441)+"千卡");
+
+
+                    if (stepCount-startcontstep >40){
+                        //如果走了500步就提交一次数据到服务器
+                        savenettask(((float)(stepCount*0.4))+"", user);
+                        startcontstep = stepCount ;
+                    }
+
+
                 }
-            });
+            });;
+
         }
 
         /**

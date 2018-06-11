@@ -14,8 +14,10 @@ import com.example.jclzh.shoolsports.model.adatapter.HistoricalSportAdatapter;
 import com.example.jclzh.shoolsports.model.bean.StepData;
 import com.example.jclzh.shoolsports.utils.DbUtils;
 import com.example.jclzh.shoolsports.utils.ToastUtil;
+import com.example.jclzh.shoolsports.utils.viewutils.LineChartManager;
 import com.example.jclzh.shoolsports.utils.viewutils.LineEngineChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.LineData;
 
 import java.util.List;
 
@@ -26,7 +28,8 @@ public class HistoricalActivity extends AppCompatActivity implements View.OnClic
 
     private ListView mListvieHistorical;
     private ImageView mToolbarFinsh;
-    private FrameLayout layout;
+    private LineChart lineChart1 ;
+    private List<StepData> stepDatas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,25 +46,29 @@ public class HistoricalActivity extends AppCompatActivity implements View.OnClic
      *
      */
     private void initchar() {
-//        //设置图表的描述
-//        lineChart1.setDescription("hhhhhh");
-//        //设置x轴的数据
-//        int numX = 24;
-//        //设置y轴的数据
-//        float[] datas1 = {536, 123, 769, 432, 102, 26, 94, 85, 536, 123, 769, 432, 102, 26, 94, 85, 536, 123, 769, 432, 102, 26, 94, 85};//数据
-//        //设置折线的名称
-//        LineChartManager2.setLineName("当月值");
-//        //设置第二条折线y轴的数据
-//        LineChartManager2.setLineName1("上月值");
-//        //创建两条折线的图表
-//        lineData = LineChartManager2.initSingleLineChart(this, lineChart1, numX, datas1);
-//        LineChartManager2.initDataStyle(lineChart1, lineData, this);
+
+
+        //设置图表的描述
+        lineChart1.setDescription("周运动表一览");
+        //设置x轴的数据
+        int numX = 7;
+        //设置y轴的数据
+        float[] datas1 = {536, 123, 769, 432, 102, 26, 94, 85, 536, 123, 769, 432, 102, 26, 94, 85, 536, 123, 769, 432, 102, 26, 94, 85};//数据
+        //设置折线的名称
+        LineChartManager.setLineName("当月值");
+        //设置第二条折线y轴的数据
+        LineChartManager.setLineName1("上月值");
+        //创建两条折线的图表
+            LineData lineData = LineChartManager.initSingleLineChart(this, lineChart1, stepDatas, datas1);
+        LineChartManager.initDataStyle(lineChart1, lineData, this);
+
+
     }
 
     private void initView() {
         mListvieHistorical = (ListView) findViewById(R.id.listvie_historical);
         mToolbarFinsh = (ImageView) findViewById(R.id.toolbar_finsh);
-        layout = findViewById(R.id.rl_histoiachar_root);
+        lineChart1  = findViewById(R.id.rl_histoiachar_root);
         mToolbarFinsh.setOnClickListener(this);
     }
 
@@ -70,7 +77,7 @@ public class HistoricalActivity extends AppCompatActivity implements View.OnClic
         if(DbUtils.getLiteOrm()==null){
             DbUtils.createDb(this, "jingzhi");
         }
-        List<StepData> stepDatas =DbUtils.getQueryAll(StepData.class);
+        stepDatas = DbUtils.getQueryAll(StepData.class);
 //        LineEngineChart engineChart = new LineEngineChart();
 //        LineChart chart = engineChart.getView(this);
 //        layout.addView(chart);

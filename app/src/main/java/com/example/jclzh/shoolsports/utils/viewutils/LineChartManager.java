@@ -3,6 +3,7 @@ package com.example.jclzh.shoolsports.utils.viewutils;
 import android.content.Context;
 import android.graphics.Color;
 
+import com.example.jclzh.shoolsports.model.bean.StepData;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -13,34 +14,34 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lzh on 2018/6/10.
  */
 
-public class LineChartManager {
-    private static String lineName = null;
+public class LineChartManager {private static String lineName = null;
     private static String lineName1 = null;
 
     /**
      * 创建一条折线
      * @param context 上下文
      * @param mLineChart 对象
-     * @param count X轴的数据
      * @param datas Y轴的数据
      * @return LineData
      */
-    public static LineData initSingleLineChart(Context context, LineChart mLineChart, int count, float[] datas) {
+    public static LineData initSingleLineChart(Context context, LineChart mLineChart, List<StepData> list, float[] datas) {
 
         ArrayList<String> xValues = new ArrayList<String>();
-        for (int i = 0; i < count; i++) {
-            // x轴显示的数据，这里默认使用数字下标显示
-            xValues.add((i) + ":00");
+        //x轴显示数据
+        for ( StepData stepData : list){
+            xValues.add(stepData.getToday());
+
         }
 
         // y轴的数据
         ArrayList<Entry> yValues = new ArrayList<Entry>();
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < list.size(); i++) {
             yValues.add(new Entry(datas[i], i));
         }
         //设置折线的样式

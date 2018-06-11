@@ -49,6 +49,7 @@ public class ApplicationDate {
 
       public   static   final  String   API_LOGIN_URL= "http://"+IP+":"+PORT+"/api/login";
       public   static   final  String   API_LOGIN_RENWU= "http://"+IP+":"+PORT+"/api/getmyselftask";
+      public   static   final  String   API_LOGIN_SAVERENWU= "http://"+IP+":"+PORT+"/api/saveautomation";
 
 
 

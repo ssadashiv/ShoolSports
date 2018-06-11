@@ -29,13 +29,13 @@
             android:layout_height="match_parent" />
     </RelativeLayout>
 
-    <FrameLayout
+    <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/rl_histoiachar_root"
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="300dp">
 
-    </FrameLayout>
+    </com.github.mikephil.charting.charts.LineChart>
     <ListView
         android:id="@+id/listvie_historical"
         android:layout_width="match_parent"

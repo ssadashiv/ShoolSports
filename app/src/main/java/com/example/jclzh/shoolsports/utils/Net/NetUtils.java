@@ -64,9 +64,11 @@ public class NetUtils {
      */
     public static void  jsonget(String url  ,Map<String ,String>   map,final NetListener netListener){
         String   jsonuser = (String) UtilsImp.spget("user", "");
-        User user = gson.fromJson(jsonuser, User.class);
-        map.put("token",String.valueOf(user.getToken()));
 
+        if (jsonuser!=null && !jsonuser.equals("")) {
+            User user = gson.fromJson(jsonuser, User.class);
+            map.put("token", String.valueOf(user.getToken()));
+        }
         MLog.i("URLurl拼装前:",url);
         url=url+"?";
         if (map!=null){
