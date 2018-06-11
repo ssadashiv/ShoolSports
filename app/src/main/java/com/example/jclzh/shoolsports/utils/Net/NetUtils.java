@@ -62,16 +62,19 @@ public class NetUtils {
      * @param url
      * @param netListener
      */
-    public static void  jsonget(String url  ,Map<String ,String>   map,final NetListener netListener){
-        String   jsonuser = (String) UtilsImp.spget("user", "");
-
-        if (jsonuser!=null && !jsonuser.equals("")) {
-            User user = gson.fromJson(jsonuser, User.class);
+    public static void jsonget(String url, Map<String, String> map, final NetListener netListener) {
+        String jsonuser = (String) UtilsImp.spget("user", "");
+        User user = gson.fromJson(jsonuser, User.class);
+        if (map == null) {
+            map = new HashMap<>();
+        }
+        if (user != null) {
             map.put("token", String.valueOf(user.getToken()));
         }
-        MLog.i("URLurl拼装前:",url);
-        url=url+"?";
-        if (map!=null){
+
+        MLog.i("URLurl拼装前:", url);
+        url = url + "?";
+        if (map != null) {
 
 
             for (Map.Entry<String,String> entry : map.entrySet()){

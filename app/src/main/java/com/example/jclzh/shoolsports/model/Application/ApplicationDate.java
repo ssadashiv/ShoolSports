@@ -50,8 +50,15 @@ public class ApplicationDate {
       public   static   final  String   API_LOGIN_URL= "http://"+IP+":"+PORT+"/api/login";
       public   static   final  String   API_LOGIN_RENWU= "http://"+IP+":"+PORT+"/api/getmyselftask";
       public   static   final  String   API_LOGIN_SAVERENWU= "http://"+IP+":"+PORT+"/api/saveautomation";
+    public static final String API_LOGIN_URL = "http://" + IP + ":" + PORT + "/api/login";
 
+    public static final String API_getchallenge_URL = "http://" + IP + ":" + PORT + "/api/getchallenge";
 
+    public static final String API_acceptchallenge_URL = "http://" + IP + ":" + PORT + "/api/acceptchallenge";
+
+    public static final String API_LOGIN_RENWU = "http://" + IP + ":" + PORT + "/api/getmyselftask";
+
+    public static final String API_IMG_URL = "http://" + IP + ":" + PORT;
 
       //运动项目
       public  static  final  String []   TABSPORTS = {"步行","跑步","爬山","游泳"} ;

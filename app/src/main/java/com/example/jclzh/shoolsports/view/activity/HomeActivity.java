@@ -21,19 +21,19 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.mapapi.NetworkUtil;
-import com.baidu.mapapi.SDKInitializer;
 import com.example.jclzh.shoolsports.R;
+import com.example.jclzh.shoolsports.model.Application.ApplicationDate;
 import com.example.jclzh.shoolsports.model.adatapter.HomepagerAdater;
+import com.example.jclzh.shoolsports.model.bean.User;
 import com.example.jclzh.shoolsports.utils.NetWorkUtil;
-import com.example.jclzh.shoolsports.utils.ToastUtil;
+import com.example.jclzh.shoolsports.utils.UtilsImp;
 import com.example.jclzh.shoolsports.utils.viewutils.BottomNavigationViewHelper;
 import com.example.jclzh.shoolsports.view.fragment.CommunityFragment;
 import com.example.jclzh.shoolsports.view.fragment.MapPathFragment;
 import com.example.jclzh.shoolsports.view.fragment.SportFragment;
 import com.example.jclzh.shoolsports.view.fragment.UserFragment;
-import com.example.jclzh.shoolsports.view.fragment.sporttabfragment.Sport_climbFragment;
 import com.example.jclzh.shoolsports.view.myview.HomeViewpager;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,17 +48,20 @@ public class HomeActivity extends AppCompatActivity
     private HomeViewpager viewPagercont;
     private BottomNavigationView bottomNavigationView;
     private NavigationView navigationView;
-    private Bundle savedInstanceState ;
+    private Bundle savedInstanceState;
     private TextView mHometvtoobar;
     //记录用户首次点击返回键的时间
-    private long firstTime=0;
+    private long firstTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        this.savedInstanceState =savedInstanceState;
+        this.savedInstanceState = savedInstanceState;
         //初始化百度地图
-
+        String jsonuser = (String) UtilsImp.spget("user", "");
+        Gson gson = new Gson();
+        ApplicationDate.USER = gson.fromJson(jsonuser, User.class);
         isgps();
         initview();
         initicon();
@@ -69,14 +72,14 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        switch (keyCode){
+        switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                long secondTime=System.currentTimeMillis();
-                if(secondTime-firstTime>2000){
-                    Toast.makeText(HomeActivity.this,"再按一次退出程序",Toast.LENGTH_SHORT).show();
-                    firstTime=secondTime;
+                long secondTime = System.currentTimeMillis();
+                if (secondTime - firstTime > 2000) {
+                    Toast.makeText(HomeActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                    firstTime = secondTime;
                     return true;
-                }else{
+                } else {
                     finish();
                 }
                 break;
@@ -123,9 +126,9 @@ public class HomeActivity extends AppCompatActivity
         //设置底部标签栏
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         mHometvtoobar = findViewById(R.id.hometexttoolbar);
-       //取消底部的动画效果
-       BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
-       initfragmet();
+        //取消底部的动画效果
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        initfragmet();
     }
 
     /**
@@ -133,12 +136,12 @@ public class HomeActivity extends AppCompatActivity
      */
     private void initfragmet() {
 
-        List<Fragment> list  = new ArrayList<>();
+        List<Fragment> list = new ArrayList<>();
         list.add(new SportFragment());
         list.add(new MapPathFragment());
         list.add(new CommunityFragment());
         list.add(new UserFragment());
-        viewPagercont.setAdapter(new HomepagerAdater(getSupportFragmentManager(),list));
+        viewPagercont.setAdapter(new HomepagerAdater(getSupportFragmentManager(), list));
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
 
@@ -146,7 +149,7 @@ public class HomeActivity extends AppCompatActivity
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 menuItem = item;
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.navigation_sport:
                         viewPagercont.setCurrentItem(0);
                         mHometvtoobar.setText("运动");
@@ -199,7 +202,6 @@ public class HomeActivity extends AppCompatActivity
     }
 
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -209,9 +211,9 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             //今日运动
-        }else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_gallery) {
             //历史记录
-            startActivity(new Intent(HomeActivity.this,HistoricalActivity.class));
+            startActivity(new Intent(HomeActivity.this, HistoricalActivity.class));
 
         } else if (id == R.id.nav_slideshow) {
             //运动路线
@@ -219,12 +221,12 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
             //运动排名.
 
-        }else if (id ==R.id.nav_shequ){
+        } else if (id == R.id.nav_shequ) {
             //健康评估
 
-        } else if (id==R.id.nav_shop){
+        } else if (id == R.id.nav_shop) {
             //积分商场
-        }else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_share) {
             //在线换肤
 
         }
@@ -236,12 +238,13 @@ public class HomeActivity extends AppCompatActivity
 
     /**
      * 判断GPS是够开启
+     *
      * @return
      */
     public void isgps() {
 
         boolean gps = NetWorkUtil.isGps(HomeActivity.this);
-        if (!gps){
+        if (!gps) {
             AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
 
             builder.setMessage("检测到您目前暂未开启GPS定位服务,这将会影响到您的用户体验");
