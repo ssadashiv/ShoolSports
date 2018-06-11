@@ -139,6 +139,10 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                     String mPicPath = UtilsImp.getPicPath(getActivity(), data);
                     //上传图片
                     if (mPicPath != null && !mPicPath.equals("")) {
+                        Bitmap bitmap = BitmapFactory.decodeFile(mPicPath);
+
+                        mIvHead.setImageBitmap(bitmap);
+                        mIvHeadBg.setBackground(BlurImageview.BlurImages(bitmap, getActivity()));
                         MLog.i("test","上传图片");
                         NetUtils.doUploadTest(mPicPath);
                     }
