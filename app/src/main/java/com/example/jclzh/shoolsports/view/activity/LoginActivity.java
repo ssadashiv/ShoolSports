@@ -33,11 +33,13 @@ import android.widget.TextView;
 
 import com.example.jclzh.shoolsports.R;
 import com.example.jclzh.shoolsports.model.Application.ApplicationDate;
+import com.example.jclzh.shoolsports.model.bean.User;
 import com.example.jclzh.shoolsports.utils.MLog;
 import com.example.jclzh.shoolsports.utils.Net.NetListener;
 import com.example.jclzh.shoolsports.utils.Net.NetUtils;
 import com.example.jclzh.shoolsports.utils.ToastUtil;
 import com.example.jclzh.shoolsports.utils.UtilsImp;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
