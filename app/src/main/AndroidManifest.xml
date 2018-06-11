@@ -14,14 +14,13 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- 在sdcard中创建/删除文件的权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 挂载和反挂载的权限 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <!-- 读取手机状态 ,如来了新电话-->
+    <!-- 读取手机状态 ,如来了新电话 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- 震动权限 -->
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -33,17 +32,18 @@
 
     <!-- 百度地图定位功能所需权限 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
+
     <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_GPS"/>
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
     <uses-permission android:name="android.permission.READ_LOGS" />
-
-
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <application
         android:name=".model.Application.AppApplication"
         android:allowBackup="true"
@@ -53,26 +53,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--百度地图AK填写-->
+        <!-- 百度地图AK填写 -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="RdFn0qES7jTLur3MBGt3cGwm4ZY9BZIS" >
-        </meta-data>
+            android:value="RdFn0qES7jTLur3MBGt3cGwm4ZY9BZIS" />
 
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" >
+            android:process=":remote">
             <intent-filter>
-                <action android:name="com.baidu.location.service_v2.2" >
-                </action>
+                <action android:name="com.baidu.location.service_v2.2" />
             </intent-filter>
         </service>
-        <!--高德地图的API KEY-->
-        <!--<meta-data-->
-            <!--android:name="com.amap.api.v2.apikey"-->
-            <!--android:value="38904f226990001d14e3c24d01943d6d"/>-->
-        <!--<service android:name="com.amap.api.location.APSService"></service>-->
+        <!-- 高德地图的API KEY -->
+        <!-- <meta-data -->
+        <!-- android:name="com.amap.api.v2.apikey" -->
+        <!-- android:value="38904f226990001d14e3c24d01943d6d"/> -->
+        <!-- <service android:name="com.amap.api.location.APSService"></service> -->
 
         <activity android:name=".view.activity.GuideActivity">
             <intent-filter>
@@ -91,13 +89,15 @@
         <activity
             android:name=".view.activity.UserActivity"
             android:label="@string/title_activity_user"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".view.activity.PersonalDataActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".view.activity.PersonalDataActivity"
             android:label="@string/title_activity_personal_data"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
 
-        <!--拍摄照片，适配7.0以上-->
-        <!--<provider
+        <!-- 拍摄照片，适配7.0以上 -->
+        <!--
+        <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.jclzh.shoolsports.utils.fileprovider"
             android:exported="false"
@@ -105,7 +105,29 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_path" />
-        </provider>-->
+        </provider>
+        -->
+        <activity
+            android:name=".view.activity.SettingActivity"
+            android:label="@string/title_activity_setting"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".view.activity.MessageActivity"
+            android:label="@string/title_activity_message"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".view.activity.ShoppingRecordActivity"
+            android:label="@string/title_activity_shopping_record"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".view.activity.MyTrainingActivity"
+            android:label="@string/title_activity_my_training"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".view.activity.PunchingCardRecordActivity"
+            android:label="@string/title_activity_punching_card_record"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>

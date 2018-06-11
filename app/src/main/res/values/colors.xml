@@ -14,4 +14,7 @@
     <color name="tab_checked">#ffffff</color>
     <!--底部未选中的颜色-->
     <color name="tab_unchecked">#8b8b8b</color>
+
+    <color name="colorBalck">#000000</color>
+    <color name="colorWhait">#ffffff</color>
 </resources>
