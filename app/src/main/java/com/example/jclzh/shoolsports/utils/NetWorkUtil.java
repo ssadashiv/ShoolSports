@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
@@ -16,6 +17,16 @@ import android.provider.Settings;
 
 public class NetWorkUtil {
 
+
+    /**
+     * 判断GPS是否开启
+     * @return
+     */
+    public   static  boolean  isGps(Context context){
+        LocationManager  lm=(LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
+        boolean ok=lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        return ok ;
+        }
 
         /**
          * 判断当前是否有网络连接

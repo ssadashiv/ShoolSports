@@ -20,11 +20,12 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" >
 
             <TextView
+                android:id="@+id/hometexttoolbar"
                 android:layout_marginRight="33sp"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="@color/titlecoloer"
-                android:text="主界面"
+                android:textColor="@color/sport_interor_textcoloerselect"
+                android:text="运动"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

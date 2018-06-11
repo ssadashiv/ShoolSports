@@ -19,6 +19,12 @@
         <item name="android:windowExitAnimation">@anim/pop_exit_anim</item>
     </style>
 
+    <style name="bg_shapetouming">
+        <item name="android:background">#9b9c9e</item>
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
     <!-- 登录网络加载dialog样式 -->
     <!--<style name="Loginadialog" parent="@android:style/Theme.Dialog">-->
     <!--<item name="android:windowFrame">@null</item>-->

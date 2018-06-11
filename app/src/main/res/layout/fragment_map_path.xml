@@ -6,126 +6,18 @@
     tools:context="com.example.jclzh.shoolsports.view.fragment.MapPathFragment">
 
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-
-
-
         <com.baidu.mapapi.map.MapView
             android:id="@+id/home_mapview"
-            android:layout_weight="2"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="match_parent">
         </com.baidu.mapapi.map.MapView>
 
 
-        <LinearLayout
-            android:layout_weight="0.5"
-            android:layout_width="match_parent"
-            android:layout_height="0dp">
-
-            <LinearLayout
-
-                android:orientation="vertical"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp">
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:textStyle="bold"
-                            android:textColor="@color/coloer_orjue"
-                            android:gravity="center"
-                            android:text="1134步"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp" />
-
-                        <TextView
-                            android:textColor="#000"
-                            android:gravity="center"
-                            android:text="卡路里"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:textStyle="bold"
-                            android:textColor="@color/coloer_greed"
-                            android:gravity="center"
-                            android:text="1134步"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp" />
-
-                        <TextView
-                            android:textColor="#000"
-                            android:gravity="center"
-                            android:text="今日步数"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:textStyle="bold"
-                            android:textColor="@color/coloer_bluer"
-                            android:gravity="center"
-                            android:text="1024km"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp" />
-
-                        <TextView
-                            android:textColor="#000"
-                            android:gravity="center"
-                            android:text="距离"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp" />
-                    </LinearLayout>
-
-
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </FrameLayout>

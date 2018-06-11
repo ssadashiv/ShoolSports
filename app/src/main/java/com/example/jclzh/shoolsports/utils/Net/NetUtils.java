@@ -8,11 +8,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.jclzh.shoolsports.model.Application.AppApplication;
 import com.example.jclzh.shoolsports.model.Application.ApplicationDate;
+import com.example.jclzh.shoolsports.model.bean.User;
 import com.example.jclzh.shoolsports.utils.MLog;
 import com.example.jclzh.shoolsports.utils.UtilsImp;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,8 +31,9 @@ import java.util.Map;
 public class NetUtils {
 
     private static RequestQueue requestQueue;
-    private static JSONObject jsonObject;
+    private  static JSONObject jsonObject;
     private static JsonObjectRequest jsonObjectRequest;
+    private static Gson gson = new Gson();
 
     /**
      * Json 请求
@@ -40,6 +42,7 @@ public class NetUtils {
      * @param map
      * @param netListener
      * @return
+     *
      */
     public static void jsonpost(String url, Map map, final NetListener netListener) {
 
@@ -61,32 +64,38 @@ public class NetUtils {
 
     /**
      * JSON的get请求
-     *
      * @param url
      * @param netListener
      */
     public static void jsonget(String url, Map<String, String> map, final NetListener netListener) {
+        String jsonuser = (String) UtilsImp.spget("user", "");
+        User user = gson.fromJson(jsonuser, User.class);
+        if (map == null) {
+            map = new HashMap<>();
+        }
+        if (user != null) {
+            map.put("token", String.valueOf(user.getToken()));
+        }
 
         MLog.i("URLurl拼装前:", url);
         url = url + "?";
         if (map != null) {
 
-            for (Map.Entry<String, String> entry : map.entrySet()) {
 
-                url = url + entry.getKey() + "=" + entry.getValue() + "&";
-
+            for (Map.Entry<String,String> entry : map.entrySet()){
+                url=url+entry.getKey()+"="+entry.getValue()+"&";
             }
 
         }
-        MLog.i("URL拼装后:", url);
+        MLog.i("URL拼装后:",url);
         requestQueue = AppApplication.getRequestQueue();
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 netListener.yeslistener(jsonObject);
-                MLog.i("网络请求结果", jsonObject.toString());
+                MLog.i("网络请求结果",jsonObject.toString());
                 try {
-                    MLog.i("网络请求结果状态码:", "" + jsonObject.getInt("status"));
+                    MLog.i("网络请求结果状态码:",""+jsonObject.getInt("status"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -193,4 +202,5 @@ public class NetUtils {
         }, study_code,f1, params); //注意这个key必须是f_file[],后面的[]不能少
         requestQueue.add(request);
     }
+
 }

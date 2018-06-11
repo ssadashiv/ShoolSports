@@ -23,7 +23,8 @@ public class ShoppingRecordActivity extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fileList();
+                finish();
+
             }
         });
     }

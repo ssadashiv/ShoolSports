@@ -33,11 +33,13 @@ import android.widget.TextView;
 
 import com.example.jclzh.shoolsports.R;
 import com.example.jclzh.shoolsports.model.Application.ApplicationDate;
+import com.example.jclzh.shoolsports.model.bean.User;
 import com.example.jclzh.shoolsports.utils.MLog;
 import com.example.jclzh.shoolsports.utils.Net.NetListener;
 import com.example.jclzh.shoolsports.utils.Net.NetUtils;
 import com.example.jclzh.shoolsports.utils.ToastUtil;
 import com.example.jclzh.shoolsports.utils.UtilsImp;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -80,10 +82,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //判断是否自动登录
-        if ((Boolean) UtilsImp.spget("checked_islogin",false)){
-            startActivity(new Intent(LoginActivity.this,HomeActivity.class));
-        }
+
 
         setContentView(R.layout.activity_login);
         initView();
@@ -216,8 +215,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     try {
                         //todo 控制用户登录
                         if (jsonObject.getInt("status") == 1) {
+                            UtilsImp.spput("user", jsonObject.toString());
+                            Gson gson = new Gson();
+                            ApplicationDate.USER = gson.fromJson(jsonObject.toString(), User.class);
                             gotohome();
-
                         } else {
                             ToastUtil.show(LoginActivity.this, "密码错误请重试", 1 * 1000);
                         }
@@ -259,15 +260,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         if (checked_ispass){
+
             UtilsImp.spput("checked_ispass",true);
             UtilsImp.spput("ck_user",mEmailView.getText().toString().trim());
             UtilsImp.spput("ck_pass",mPasswordView.getText().toString().trim());
+
+
         }else {
 
             UtilsImp.spput("checked_ispass",false);
             UtilsImp.spput("ck_user","");
             UtilsImp.spput("ck_pass","");
-
 
         }
 

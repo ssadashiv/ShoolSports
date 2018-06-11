@@ -42,7 +42,7 @@ public class PunchingCardRecordActivity extends AppCompatActivity implements Gri
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fileList();
+                finish();
             }
         });
 
