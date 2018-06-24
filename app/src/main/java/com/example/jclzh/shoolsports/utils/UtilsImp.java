@@ -1,10 +1,21 @@
 package com.example.jclzh.shoolsports.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
+
 import com.example.jclzh.shoolsports.model.Application.ApplicationDate;
 import com.example.jclzh.shoolsports.model.Application.AppApplication;
+
+import java.text.NumberFormat;
+
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -16,6 +27,11 @@ public class UtilsImp {
 
     private static SharedPreferences.Editor edit;
     private static SharedPreferences sharedPreferences;
+
+    public final static int TYPE_TAKE_PHOTO = 1;//Uri获取类型判断
+
+    public final static int CODE_TAKE_PHOTO = 1;//相机RequestCode
+
 
     /**
      * Sp存储数据
@@ -120,6 +136,132 @@ public class UtilsImp {
         return ApplicationDate.PORT;
     }
 
-    ;
+    /**
+     * 拍摄相机文件的Uri
+     */
+    public static Uri getMediaFileUri(int type) {
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "相册名字");
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                return null;
+            }
+        }
+        //创建Media File
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File mediaFile;
+        if (type == TYPE_TAKE_PHOTO) {
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
+        } else {
+            return null;
+        }
+        return Uri.fromFile(mediaFile);
+    }
+
+    /**
+     * 版本24以上 拍摄相机文件的Uri
+     */
+    public static Uri get24MediaFileUri(int type) {
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "相册名字");
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                return null;
+            }
+        }
+        //创建Media File
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File mediaFile;
+        if (type == TYPE_TAKE_PHOTO) {
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg");
+        } else {
+            return null;
+        }
+        return FileProvider.getUriForFile(AppApplication.getContext(), AppApplication.getContext().getPackageName() + ".fileprovider", mediaFile);
+    }
+
+    /**
+     *
+     * 在权限获取后，判断SDK版本，然后进行相应操作，如下：
+     public void startXiangji() {
+     if (Build.VERSION.SDK_INT >= 24) {
+     Intent takeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+     Uri photoUri = get24MediaFileUri(TYPE_TAKE_PHOTO);
+     takeIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+     startActivityForResult(takeIntent, CODE_TAKE_PHOTO);
+     } else {
+     Intent takeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+     Uri photoUri = getMediaFileUri(TYPE_TAKE_PHOTO);
+     takeIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+     startActivityForResult(takeIntent, CODE_TAKE_PHOTO);
+     }
+     }
+     */
+
+    /**
+     *
+     *拍照完毕后，获取返回数据显示照片，api24以后，需要转换输入流来获取Bitmap，而输入流的获取需要通过getContentResolvrer.openInputStream()来获取，具体代码如下：
+     *
+     * @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    switch (requestCode) {
+    case CODE_TAKE_PHOTO:
+    if (resultCode == RESULT_OK) {
+    if (data != null) {
+    if (data.hasExtra("data")) {
+    Log.i("URI", "data is not null");
+    Bitmap bitmap = data.getParcelableExtra("data");
+    imageView.setImageBitmap(bitmap);//imageView即为当前页面需要展示照片的控件，可替换
+    }
+    } else {
+    Log.i("URI", "Data is null");
+    if (Build.VERSION.SDK_INT >= 24){
+    Bitmap bitmap = null;
+    try {
+    bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(photoUri));
+    } catch (FileNotFoundException e) {
+    e.printStackTrace();
+    }
+    imageView.setImageBitmap(bitmap);
+    }else {
+    Bitmap bitmap = BitmapFactory.decodeFile(photoUri.getPath());
+    imageView.setImageBitmap(bitmap);
+    }
+    }
+    }
+    break;
+    }
+    }
+     */
+
+
+    /**
+     * 选择照片
+     * @return 照片路劲
+     */
+    public static String getPicPath(Context context, Intent intent) {
+        Uri selectImageUri = intent.getData();
+        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+        Cursor cursor = context.getContentResolver().query(selectImageUri, filePathColumn, null, null, null);
+        cursor.moveToFirst();
+        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+        String picturePath = cursor.getString(columnIndex);
+        cursor.close();
+        return picturePath;
+    }
+
+
+
+    public static   String  getbaifenbi(int num1 ,int num2){
+        // 创建一个数值格式化对象
+
+        NumberFormat numberFormat = NumberFormat.getInstance();
+
+        // 设置精确到小数点后2位
+
+        numberFormat.setMaximumFractionDigits(2);
+
+        String result = numberFormat.format((float) num1 / (float) num2 * 100);
+        return  result;
+
+    }
 
 }

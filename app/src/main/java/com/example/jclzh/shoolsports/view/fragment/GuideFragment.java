@@ -133,6 +133,7 @@ public class GuideFragment extends Fragment implements ViewPager.OnPageChangeLis
                 break;
             case R.id.bt_guidestart:
                 startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finish();
                 break;
         }
     }

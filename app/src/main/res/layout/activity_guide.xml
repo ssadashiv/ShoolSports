@@ -4,17 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     tools:context="com.example.jclzh.shoolsports.view.activity.GuideActivity">
 
 
-
     <RelativeLayout
-        android:background="@drawable/guide5"
         android:id="@+id/gudie_cont"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_t1">
 
 
+        <TextView
+            android:layout_marginBottom="15dp"
+            android:id="@+id/guide_appname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:text="校园云动"
+            android:textColor="#dedede"
+            android:textSize="33sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_below="@+id/guide_appname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="量身定制属于您的健康计划"
+            android:textColor="#dedede"
+            android:textSize="18sp"
+            />
+
+        <ProgressBar
+
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
 
     </RelativeLayout>

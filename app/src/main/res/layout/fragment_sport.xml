@@ -2,12 +2,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.jclzh.shoolsports.view.fragment.SportFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="这是我的运动界面" />
+        android:layout_height="match_parent">
+
+    <android.support.design.widget.TabLayout
+        android:background="@color/colorAccent"
+        android:id="@+id/tablayout_sport"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        app:tabIndicatorColor="@color/sport_interor_coloer"
+        app:tabIndicatorHeight="2dp"
+        app:tabTextColor="@color/sport_interor_textcoloer"
+        app:tabSelectedTextColor="@color/sport_interor_textcoloerselect"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        >
+    </android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpaer_sports"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
+    </LinearLayout>
+
+
 
 </FrameLayout>

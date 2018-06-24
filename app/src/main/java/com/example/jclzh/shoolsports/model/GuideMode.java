@@ -46,7 +46,7 @@ public class GuideMode implements  GuideModelInterface {
     @Override
     public Bitmap[] getGuideImgs() {
         //todo  从网络获取引导图片
-        Bitmap  []  bitmaps  =  {idtobitmap(R.drawable.guide1),idtobitmap(R.drawable.guide2),idtobitmap(R.drawable.guide3),idtobitmap(R.drawable.guide4)};
+        Bitmap  []  bitmaps  =  {idtobitmap(R.drawable.guide1),idtobitmap(R.drawable.guide2),idtobitmap(R.drawable.guide3),idtobitmap(R.drawable.guide)};
         return bitmaps;
     }
 
@@ -57,7 +57,7 @@ public class GuideMode implements  GuideModelInterface {
      */
     @Override
     public int[] getGuideImgsid() {
-        int  []  imgs  =  {R.drawable.guide1,R.drawable.guide2,R.drawable.guide3,R.drawable.guide4};
+        int  []  imgs  =  {R.drawable.guide1,R.drawable.guide2,R.drawable.guide3,R.drawable.guide};
         return imgs;
     }
 

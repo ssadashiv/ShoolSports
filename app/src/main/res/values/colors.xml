@@ -3,15 +3,38 @@
     <color name="colorPrimary">#3e3e3e</color>
     <color name="colorPrimaryDark">#828283</color>
     <color name="colorAccent">#363636</color>
+
+    <color name="yellow">#fd9c06</color>
+    <color name="red">#EE2C2C</color>
+    <color name="grey">#BDBDBD</color>
+    <color name="black">#000000</color>
+    <color name="color_one">#FDE4BB</color>
+    <color name="color_two">#FCD2A1</color>
+    <color name="color_three">#EF8273</color>
+
+
+
     <color name="titlecoloer">#dedede</color>
     <color name="coloer_red">#e61911</color>
-    <color name="coloer_greed">#0ce440</color>
+    <color name="coloer_greed">#57e97a</color>
+    <color name="coloer_hei">#000</color>
     <color name="coloer_bluer">#1f8bcf</color>
     <color name="pain_xian">#dedede</color>
     <color name="coloer_orjue">#d96928</color>
 
+    <!--运动APP的游标指示器颜色-->
+    <color name="sport_interor_coloer" >#57e97a</color>
+    <!--标签卡默认未选中颜色-->
+    <color name="sport_interor_textcoloer" >#dedede</color>
+    <!--标签卡选中颜色-->
+    <color name="sport_interor_textcoloerselect" >#57e97a</color>
+
+
     <!--底部buttom 选中的颜色-->
-    <color name="tab_checked">#ffffff</color>
+    <color name="tab_checked">#57e97a</color>
     <!--底部未选中的颜色-->
     <color name="tab_unchecked">#8b8b8b</color>
+
+    <color name="colorBalck">#000000</color>
+    <color name="colorWhait">#ffffff</color>
 </resources>

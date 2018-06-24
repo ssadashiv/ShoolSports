@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.jclzh.shoolsports.view.fragment.CommunityFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/community_recycle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="这是我的社交界面" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>
