@@ -166,6 +166,28 @@
             </intent-filter>
         </service>
 
+        <activity
+            android:name=".view.activity.SettingActivity"
+            android:label="@string/title_activity_setting"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".view.activity.MessageActivity"
+            android:label="@string/title_activity_message"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".view.activity.ShoppingRecordActivity"
+            android:label="@string/title_activity_shopping_record"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".view.activity.MyTrainingActivity"
+            android:label="@string/title_activity_my_training"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".view.activity.PunchingCardRecordActivity"
+            android:label="@string/title_activity_punching_card_record"
+            android:theme="@style/AppTheme">
+        </activity>
+
     </application>
 
 </manifest>

@@ -33,5 +33,8 @@
     <!--底部buttom 选中的颜色-->
     <color name="tab_checked">#57e97a</color>
     <!--底部未选中的颜色-->
-    <color name="tab_unchecked">#dedede</color>
+    <color name="tab_unchecked">#8b8b8b</color>
+
+    <color name="colorBalck">#000000</color>
+    <color name="colorWhait">#ffffff</color>
 </resources>

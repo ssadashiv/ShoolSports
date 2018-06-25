@@ -60,9 +60,15 @@ public class ApplicationDate {
 
     public static final String API_LOGIN_RENWU = "http://" + IP + ":" + PORT + "/api/getmyselftask";
 
-    public static final String API_IMG_URL = "http://" + IP + ":" + PORT;
+    public static final String API_IMG_URL = "http://" + IP + ":"     + PORT;
 
     //运动项目
     public static final String[] TABSPORTS = {"步行", "跑步", "爬山", "游泳"};
+
+    //上传图片的url
+    public   static   final  String   API_UPLOAD_IMAGE_URL= "http://"+IP+":"+PORT+"/api/uploadimage";
+
+    //获取自身所有任务
+    public static final String API_MY_TASK = "http://"+IP+":"+PORT+"/api/getmyselftask";
 
 }

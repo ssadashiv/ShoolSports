@@ -116,4 +116,10 @@
     </string>
     <string name="title_activity_user">个人中心</string>
     <string name="title_activity_personal_data">个人资料</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_message">MessageActivity</string>
+    <string name="title_activity_shopping_record">ShoppingRecordActivity</string>
+    <string name="title_activity_my_training">MyTrainingActivity</string>
+    <string name="title_activity_punching_card_record">punchingCardRecordActivity</string>
+    <string name="hello">hello</string>
 </resources>
