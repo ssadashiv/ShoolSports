@@ -41,7 +41,7 @@ public class ApplicationDate {
     public static final String APPSPNAME = "SHOOLSPORTS";
 
     //服务器IP地址
-    public static final String IP = "192.168.1.117";
+    public static final String IP = "39.106.132.165";
     //服务器端口
     public static final int PORT = 7001;
 
