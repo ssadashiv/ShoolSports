@@ -14,7 +14,15 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.jclzh.shoolsports.R;
+import com.example.jclzh.shoolsports.model.Application.ApplicationDate;
+import com.example.jclzh.shoolsports.utils.Net.NetListener;
+import com.example.jclzh.shoolsports.utils.Net.NetUtils;
 import com.example.jclzh.shoolsports.utils.UtilsImp;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -62,19 +70,45 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+        Map<String, String> map = new HashMap<>();
         switch (v.getId()) {
             case R.id.btn_cut:
-                startActivity(new Intent(this,LoginActivity.class));
+                //退出登陆
+                NetUtils.jsonget(ApplicationDate.API_LOGOUT, map, new NetListener() {
+                    @Override
+                    public void yeslistener(JSONObject jsonObject) {
+                        startActivity(new Intent(SettingActivity.this, LoginActivity.class));
+                    }
+
+                    @Override
+                    public void errorlistener(String error) {
+                        Toast.makeText(SettingActivity.this, "错误：请检查网络", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
                 break;
             case R.id.btn_logout:
-                UtilsImp.spput("checked_ispass",false);
-                UtilsImp.spput("checked_islogin",false);
-                UtilsImp.spput("ck_user","");
-                UtilsImp.spput("ck_pass","");
-                startActivity(new Intent(this,LoginActivity.class));
+                //退出登陆
+                NetUtils.jsonget(ApplicationDate.API_LOGOUT, map, new NetListener() {
+                    @Override
+                    public void yeslistener(JSONObject jsonObject) {
+                        UtilsImp.spput("checked_ispass", false);
+                        UtilsImp.spput("checked_islogin", false);
+                        UtilsImp.spput("ck_user", "");
+                        UtilsImp.spput("ck_pass", "");
+                        startActivity(new Intent(SettingActivity.this, LoginActivity.class));
+                    }
+
+                    @Override
+                    public void errorlistener(String error) {
+                        Toast.makeText(SettingActivity.this, "错误：请检查网络" , Toast.LENGTH_SHORT).show();
+
+                    }
+                });
                 break;
         }
     }
+
 
     private class CheckedListener implements CompoundButton.OnCheckedChangeListener {
         @Override

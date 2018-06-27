@@ -52,6 +52,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_GPS" />
     <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- 鹰眼权限 -->
 
@@ -134,6 +136,10 @@
             android:label="@string/title_activity_personal_data"
             android:theme="@style/AppTheme" />
         <activity android:name=".view.activity.HistoricalActivity" />
+        <activity
+            android:name=".view.activity.ShopActivity"
+            android:label="@string/title_activity_shop"
+            android:theme="@style/AppTheme" />
 
         <service
             android:name=".model.service.StepService"

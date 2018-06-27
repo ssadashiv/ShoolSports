@@ -17,6 +17,7 @@ import android.widget.Toolbar;
 
 import com.example.jclzh.shoolsports.R;
 import com.example.jclzh.shoolsports.model.Application.AppApplication;
+import com.example.jclzh.shoolsports.model.Application.ApplicationDate;
 import com.example.jclzh.shoolsports.utils.AlertDialogUtils;
 import com.example.jclzh.shoolsports.utils.MLog;
 import com.example.jclzh.shoolsports.utils.QRCodeUtil;
@@ -78,6 +79,9 @@ public class PersonalDataActivity extends AppCompatActivity implements View.OnCl
         if (study_code != null && !study_code.equals("")) {
             mTvAccount.setText(study_code);
         }
+        //设置姓名
+        mTvNike.setText(ApplicationDate.USER.getUser().getName());
+
     }
 
     private void initView() {
@@ -119,19 +123,6 @@ public class PersonalDataActivity extends AppCompatActivity implements View.OnCl
             case R.id.ll_account:
                 break;
             case R.id.ll_nick:
-                dialogUtils.showEditDialog(this,"修改账户");
-                dialogUtils.setDialogInterface(new AlertDialogUtils.DialogInterface() {
-                    @Override
-                    public void NeutralListener(DialogInterface dialog, int which, String string) {
-                        mTvNike.setText(string);
-                        dialog.dismiss();
-                    }
-
-                    @Override
-                    public void NegativeListener(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
                 break;
             case R.id.ll_sex:
                 dialogUtils.singleDialog(this,"选择性别");

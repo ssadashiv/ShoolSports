@@ -122,4 +122,5 @@
     <string name="title_activity_my_training">MyTrainingActivity</string>
     <string name="title_activity_punching_card_record">punchingCardRecordActivity</string>
     <string name="hello">hello</string>
+    <string name="title_activity_shop">积分商城</string>
 </resources>

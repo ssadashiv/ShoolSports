@@ -71,4 +71,16 @@ public class ApplicationDate {
     //获取自身所有任务
     public static final String API_MY_TASK = "http://"+IP+":"+PORT+"/api/getmyselftask";
 
+    //退出登陆
+    public static final String API_LOGOUT = "http://"+IP+":"+PORT+"/api/loginout";
+
+    //获取所有商品信息
+    public static final String API_GET_ALL_SHOP = "http://"+IP+":"+PORT+"/api/getshopall";
+
+    //兑换商品
+    public static final String API_BUYS_SHOP = "http://"+IP+":"+PORT+"/api/buyshop";
+
+    //获取所有消息
+    public static final String API_GET_MESSAGE = "http://"+IP+":"+PORT+"/api/getmsgall";
+
 }

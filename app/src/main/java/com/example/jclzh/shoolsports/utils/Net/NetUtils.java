@@ -163,21 +163,19 @@ public class NetUtils {
 
     /**
      * 单文件上传
-     * @param picPath
+     * @param picPath 文件
      */
     public static void doUploadTest(String picPath, final UploadInterface uploadInterface) {
-
         requestQueue = AppApplication.getRequestQueue();
-        String path = picPath;
         Log.e("zb", "picPath=" + picPath);
         Map<String, String> params = new HashMap<String, String>();
         String study_code = (String) UtilsImp.spget("ck_user", "");
-        MLog.i("ss","path:"+path);
+        MLog.i("ss","path:"+picPath);
         if (study_code != null && !study_code.equals("")) {
             params.put("study_code", study_code);
         }
         Log.e("zb", "params=" + params);
-        File f1 = new File(path);
+        File f1 = new File(picPath);
         Log.e("zb", "f1=" + f1.toString());
 
         if (!f1.exists()) {

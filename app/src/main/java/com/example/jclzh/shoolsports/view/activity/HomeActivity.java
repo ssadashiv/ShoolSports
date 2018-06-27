@@ -2,6 +2,10 @@ package com.example.jclzh.shoolsports.view.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -18,13 +22,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.example.jclzh.shoolsports.R;
 import com.example.jclzh.shoolsports.model.Application.ApplicationDate;
 import com.example.jclzh.shoolsports.model.adatapter.HomepagerAdater;
 import com.example.jclzh.shoolsports.model.bean.User;
+import com.example.jclzh.shoolsports.utils.BitmapUtil;
+import com.example.jclzh.shoolsports.utils.BlurImageview;
 import com.example.jclzh.shoolsports.utils.NetWorkUtil;
 import com.example.jclzh.shoolsports.utils.UtilsImp;
 import com.example.jclzh.shoolsports.utils.viewutils.BottomNavigationViewHelper;
@@ -52,6 +61,9 @@ public class HomeActivity extends AppCompatActivity
     private TextView mHometvtoobar;
     //记录用户首次点击返回键的时间
     private long firstTime = 0;
+    private ImageView iv_heda;
+    private TextView tv_account;
+    private TextView tv_school;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +106,10 @@ public class HomeActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View view = navigationView.inflateHeaderView(R.layout.nav_header_home);
+        iv_heda = view.findViewById(R.id.imageView);
+        tv_account = view.findViewById(R.id.tv_account);
+        tv_school = view.findViewById(R.id.textView);
         viewPagercont = findViewById(R.id.viewpager_home);
         viewPagercont.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -189,6 +205,41 @@ public class HomeActivity extends AppCompatActivity
                 drawer.openDrawer(GravityCompat.START);
             }
         });
+
+
+        //网络路径的图片
+        String netPath = ApplicationDate.API_IMG_URL+ApplicationDate.USER.getUser().getImage();
+        //本地路径的图片
+        final String localPath = (String) UtilsImp.spget("net_head", "");
+        if (!netPath.equals("")) {
+            BitmapUtil.getUrlBitmap(netPath, new BitmapUtil.BitmapInterface() {
+                @Override
+                public void onSuccess(Bitmap response) {
+                    Bitmap bitmap = BitmapUtil.createCircleImage(response);
+                    iv_heda.setImageBitmap(bitmap);
+//                    toolbar.setNavigationIcon(new BitmapDrawable(getResources(),bitmap));
+
+                }
+
+                @Override
+                public void onError(VolleyError error) {
+                    if (localPath != null && !localPath.equals("")) {
+                        Bitmap response = BitmapUtil.getSmallBitmap(localPath);
+                        Bitmap bitmap = BitmapUtil.createCircleImage(response);
+                        iv_heda.setImageBitmap(bitmap);
+//                        toolbar.setNavigationIcon(new BitmapDrawable(getResources(), bitmap));
+
+                    }
+
+                }
+            });
+//            Bitmap bitmap = BitmapUtil.getSmallBitmap(dirPath);
+
+        }
+
+        tv_account.setText(ApplicationDate.USER.getUser().getName());
+        //todo 学校
+//        tv_school.setText(ApplicationDate.USER.getUser());
     }
 
     @Override
@@ -226,6 +277,7 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_shop) {
             //积分商场
+            startActivity(new Intent(HomeActivity.this, ShopActivity.class));
         } else if (id == R.id.nav_share) {
             //在线换肤
 

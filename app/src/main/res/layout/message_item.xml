@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:textColor="#000"
         android:layout_gravity="center"
         android:textSize="18sp"
         android:text="程序发布"
@@ -25,7 +26,7 @@
 
     <TextView
         android:layout_gravity="end"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:text="时间：2018年6月24日13:57:28"
         android:id="@+id/tv_time"
         android:layout_width="wrap_content"
