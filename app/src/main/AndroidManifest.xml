@@ -109,7 +109,7 @@
         <service
             android:name="com.baidu.trace.LBSTraceService"
             android:enabled="true"
-            android:process=":remote"></service>
+            android:process=":remote" />
 
         <activity android:name=".view.activity.GuideActivity">
             <intent-filter>
@@ -155,6 +155,7 @@
             android:priority="1000"
             android:process="cn.bluemobi.dylan.step..pedometer.StepsDetectService">
             <intent-filter>
+
                 <!-- 系统启动完成后会调用 -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.DATE_CHANGED" />
@@ -185,9 +186,14 @@
         <activity
             android:name=".view.activity.PunchingCardRecordActivity"
             android:label="@string/title_activity_punching_card_record"
-            android:theme="@style/AppTheme">
-        </activity>
-
+            android:theme="@style/AppTheme" />
+        <activity android:name=".view.activity.PaiMingActivity" />
+        <activity android:name=".view.activity.JianKangPingGuActivity" />
+        <activity android:name=".view.activity.GoshppingActivity" />
+        <activity android:name=".view.activity.MapViewActivity" />
+        <activity android:name=".view.activity.JianKangActivity" />
+        <activity android:name=".view.activity.JianKangJieguoActivity" />
+        <activity android:name=".view.activity.TodySportsActivity"></activity>
     </application>
 
 </manifest>

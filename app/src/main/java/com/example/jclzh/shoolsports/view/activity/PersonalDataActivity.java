@@ -13,14 +13,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import com.example.jclzh.shoolsports.R;
-import com.example.jclzh.shoolsports.model.Application.AppApplication;
 import com.example.jclzh.shoolsports.utils.AlertDialogUtils;
-import com.example.jclzh.shoolsports.utils.MLog;
 import com.example.jclzh.shoolsports.utils.QRCodeUtil;
-import com.example.jclzh.shoolsports.utils.ToastUtil;
 import com.example.jclzh.shoolsports.utils.UtilsImp;
 
 import java.io.File;
@@ -220,7 +216,6 @@ public class PersonalDataActivity extends AppCompatActivity implements View.OnCl
                 return external.getAbsolutePath();
             }
         }
-
         return context.getFilesDir().getAbsolutePath();
     }
 }

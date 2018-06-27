@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jclzh.shoolsports.view.activity.TodySportsActivity">
+    <RelativeLayout
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+
+        <ImageView
+            android:id="@+id/toolbar_finsh"
+            android:padding="15dp"
+            android:src="@drawable/arrow_back_white"
+            android:layout_width="45dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textColor="@color/coloer_greed"
+            android:textStyle="bold"
+            android:text="今日运动"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:layout_centerInParent="true"
+                android:id="@+id/mPieChart"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_tishi"
+                    android:textColor="#333333"
+                    android:textSize="16sp"
+                    android:layout_centerInParent="true"
+                    android:text="您今天还没有运动呢，快出去走走吧~"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_shuoming"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/coloer_greed"
+                    android:layout_centerInParent="true"
+                    android:text="运动比例"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <View
+                    android:layout_centerInParent="true"
+                    android:background="#333333"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    />
+                <TextView
+                    android:gravity="center"
+                    android:background="#fff"
+                    android:textColor="#333333"
+                    android:textSize="16sp"
+                    android:layout_centerInParent="true"
+                    android:text="运动日报"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:background="@drawable/text_biaoshaper"
+                    android:textColor="#000"
+                    android:text="运动类型"
+                    android:gravity="center"
+                    android:layout_weight="1.5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:background="@drawable/text_biaoshaper"
+                    android:textColor="#000"
+                    android:text="步数"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:background="@drawable/text_biaoshaper"
+                    android:textColor="#000"
+                    android:text="距离/m"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:background="@drawable/text_biaoshaper"
+                    android:textColor="#000"
+                    android:text="卡路里"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:background="@drawable/text_biaoshaper"
+                    android:textColor="#000"
+                    android:text="步行"
+                    android:gravity="center"
+                    android:layout_weight="1.5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_bushu1"
+                    android:text="0步"
+                    style="@style/tv_yundongbiao" />
+
+                <TextView
+                    android:id="@+id/tv_juli1"
+                    android:background="@drawable/text_biaoshaper"
+                    android:textColor="#000"
+                    android:text="0m"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_kaluli1"
+                    android:background="@drawable/text_biaoshaper"
+                    android:textColor="#000"
+                    android:text="0卡"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:background="@drawable/text_biaoshaper"
+                    android:textColor="#000"
+                    android:text="跑步"
+                    android:gravity="center"
+                    android:layout_weight="1.5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_bushu2"
+                    android:text="0步"
+                    style="@style/tv_yundongbiao" />
+
+                <TextView
+                    android:id="@+id/tv_juli2"
+                    android:text="0m"
+                    style="@style/tv_yundongbiao" />
+
+                <TextView
+                    android:id="@+id/tv_kaluli2"
+                    android:text="0卡"
+                    style="@style/tv_yundongbiao" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:background="@drawable/text_biaoshaper"
+                    android:textColor="#000"
+                    android:text="爬山"
+                    android:gravity="center"
+                    android:layout_weight="1.5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_bushu3"
+                    android:text="0步"
+                    style="@style/tv_yundongbiao" />
+
+                <TextView
+                    android:id="@+id/tv_juli3"
+                    android:text="0m"
+                    style="@style/tv_yundongbiao" />
+
+                <TextView
+                    android:id="@+id/tv_kaluli3"
+                    android:text="0卡"
+                    style="@style/tv_yundongbiao" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:background="@drawable/text_biaoshaper"
+                    android:textColor="#000"
+                    android:text="骑行"
+                    android:gravity="center"
+                    android:layout_weight="1.5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_bushu4"
+                    android:text="0步"
+                    style="@style/tv_yundongbiao" />
+
+                <TextView
+                    android:id="@+id/tv_juli4"
+                    android:text="0m"
+                    style="@style/tv_yundongbiao" />
+
+                <TextView
+                    android:id="@+id/tv_kaluli4"
+                    android:text="0卡"
+                    style="@style/tv_yundongbiao" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>

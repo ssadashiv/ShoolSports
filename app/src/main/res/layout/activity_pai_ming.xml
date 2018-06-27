@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.jclzh.shoolsports.view.activity.PaiMingActivity">
+
+    <RelativeLayout
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+
+        <ImageView
+            android:id="@+id/toolbar_finsh"
+            android:padding="15dp"
+            android:src="@drawable/arrow_back_white"
+            android:layout_width="45dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:textColor="@color/coloer_greed"
+            android:textStyle="bold"
+            android:text="运动排名"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout_paiming"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        app:tabIndicatorColor="@color/sport_interor_coloer"
+        app:tabIndicatorHeight="2dp"
+        app:tabTextColor="@color/colorBalck"
+        app:tabSelectedTextColor="@color/sport_interor_textcoloerselect"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        >
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpaer_paiming"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+
+
+
+
+</LinearLayout>

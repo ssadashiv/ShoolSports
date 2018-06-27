@@ -24,18 +24,14 @@
             android:id="@+id/nav_shequ"
             android:icon="@drawable/jiankang_icon"
             android:title="健康评估" />
-        <item
-            android:id="@+id/nav_shop"
-            android:icon="@drawable/shop_icon"
-            android:title="积分商城" />
-    </group>
+         </group>
 
-    <item android:title="其他功能">
+    <item android:title="消费社区">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/sytleapp_icon"
-                android:title="在线换肤" />
+                android:id="@+id/nav_shop"
+                android:icon="@drawable/shop_icon"
+                android:title="积分购物" />
 
         </menu>
     </item>

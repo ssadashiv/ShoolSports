@@ -9,6 +9,8 @@ import com.example.jclzh.shoolsports.model.bean.User;
 
 public class ApplicationDate {
 
+
+    public  static  String MAPH5URL = "https://map.baidu.com/mobile/webapp/index/index/qt=cur&wd=%E5%85%A8%E5%9B%BD&from=maponline&tn=m01&ie=utf-8=utf-8/tab=line";
     public static User USER = null ;
     //LOG  等级 ：D 开关
     public static boolean ISLOG_D = true;
@@ -49,7 +51,6 @@ public class ApplicationDate {
     public static final String chidurl = "http://" + IP + ":" + PORT;
 
     //登录API
-
     public static final String API_LOGIN_SAVERENWU = "http://" + IP + ":" + PORT + "/api/saveautomation";
 
     public static final String API_LOGIN_URL = "http://" + IP + ":" + PORT + "/api/login";
@@ -60,10 +61,14 @@ public class ApplicationDate {
 
     public static final String API_LOGIN_RENWU = "http://" + IP + ":" + PORT + "/api/getmyselftask";
 
-    public static final String API_IMG_URL = "http://" + IP + ":"     + PORT;
+    public static final String API_IMG_URL = "http://" + IP + ":" + PORT;
+    //排名API
+    public static final String API_PAIMINGMING = "http://" + IP + ":" + PORT+"/api/getautomation";
 
     //运动项目
-    public static final String[] TABSPORTS = {"步行", "跑步", "爬山", "游泳"};
+    public static final String[] TABSPORTS = {"步行", "跑步", "爬山", "骑行"};
+    //运动排名
+    public static final String[] TABPAIMING = {"同校排名", "同系排名", "同班排名"};
 
     //上传图片的url
     public   static   final  String   API_UPLOAD_IMAGE_URL= "http://"+IP+":"+PORT+"/api/uploadimage";

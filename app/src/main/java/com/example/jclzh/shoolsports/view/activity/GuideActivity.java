@@ -11,12 +11,22 @@ import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.jclzh.shoolsports.R;
+import com.example.jclzh.shoolsports.model.Application.ApplicationDate;
 import com.example.jclzh.shoolsports.presenter.GuidePresenter;
 import com.example.jclzh.shoolsports.presenter.GuidePresenterInterface;
+import com.example.jclzh.shoolsports.utils.Net.NetListener;
+import com.example.jclzh.shoolsports.utils.Net.NetUtils;
+import com.example.jclzh.shoolsports.utils.ToastUtil;
 import com.example.jclzh.shoolsports.utils.UtilsImp;
 import com.example.jclzh.shoolsports.view.fragment.GuideFragment;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class GuideActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -65,13 +75,34 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                //todo  判断是否为自动登录
 
                 //判断是否自动登录
                 if ((Boolean) UtilsImp.spget("checked_islogin",false)){
-                    startActivity(new Intent(GuideActivity.this,HomeActivity.class));
-                    finish();
-                }else {
+                    Map  map   = new HashMap();
+                    map.put("study_code", UtilsImp.spget("ck_user",""));
+                    map.put("pwd", UtilsImp.spget("ck_pass",""));
+                    NetUtils.jsonget(ApplicationDate.API_LOGIN_URL, map, new NetListener() {
+                        @Override
+                        public void yeslistener(JSONObject jsonObject) {
+
+                            startActivity(new Intent(GuideActivity.this,HomeActivity.class));
+                            finish();
+
+                        }
+
+                        @Override
+                        public void errorlistener(String error) {
+
+                            startActivity(new Intent(GuideActivity.this,LoginActivity.class));
+                            finish();
+                            ToastUtil.showShort(GuideActivity.this,"当前网络连接有问题请检查网络。。。");
+
+
+                        }
+                    });
+
+
+                    }else {
                     startActivity(new Intent(GuideActivity.this,LoginActivity.class));
                     finish();
                 }

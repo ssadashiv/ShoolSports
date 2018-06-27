@@ -122,4 +122,5 @@
     <string name="title_activity_my_training">MyTrainingActivity</string>
     <string name="title_activity_punching_card_record">punchingCardRecordActivity</string>
     <string name="hello">hello</string>
+    <string name="BIM">BMI指数，又称身体的质量指数或者肥胖指数，国际一般简称为体质指数，是用体重公斤数除以身高米数平方得出的数字，BMI指数也是目前国际上常用的衡量人体胖瘦程度的指标，同时也是衡量一个人是否健康的一个标准。</string>
 </resources>
