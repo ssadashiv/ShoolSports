@@ -262,25 +262,29 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             //今日运动
+            startActivity(new Intent(HomeActivity.this, TodySportsActivity.class));
+
         } else if (id == R.id.nav_gallery) {
             //历史记录
             startActivity(new Intent(HomeActivity.this, HistoricalActivity.class));
 
         } else if (id == R.id.nav_slideshow) {
             //运动路线
+            startActivity(new Intent(HomeActivity.this, MapViewActivity.class));
+
 
         } else if (id == R.id.nav_manage) {
             //运动排名.
+            startActivity(new Intent(HomeActivity.this,PaiMingActivity.class));
 
         } else if (id == R.id.nav_shequ) {
             //健康评估
+            startActivity(new Intent(HomeActivity.this,JianKangActivity.class));
+
 
         } else if (id == R.id.nav_shop) {
             //积分商场
             startActivity(new Intent(HomeActivity.this, ShopActivity.class));
-        } else if (id == R.id.nav_share) {
-            //在线换肤
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

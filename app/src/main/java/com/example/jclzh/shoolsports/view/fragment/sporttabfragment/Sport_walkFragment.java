@@ -46,7 +46,7 @@ import java.util.Map;
  * 这是步行模块
  * A simple {@link Fragment} subclass.
  */
-public class Sport_walkFragment extends Fragment implements View.OnClickListener {
+public class    Sport_walkFragment extends Fragment implements View.OnClickListener {
 
 
     private StepArcView cc;
@@ -88,7 +88,6 @@ public class Sport_walkFragment extends Fragment implements View.OnClickListener
     private Runnable runnable;
     private User user;
 
-    private   int  startcontstep  = 0 ;
     public Sport_walkFragment() {
         // Required empty public constructor
     }
@@ -112,8 +111,6 @@ public class Sport_walkFragment extends Fragment implements View.OnClickListener
      * 每隔一段时间提交自己的运动信息到服务器
      */
     private void savenettask( final  String distance, final User user) {
-
-
 
                 Map map   =   new HashMap();
                 map.put("tag","1");
@@ -284,7 +281,10 @@ public class Sport_walkFragment extends Fragment implements View.OnClickListener
             //设置步数监听回调
             stepService.registerCallback(new UpdateUiCallBack() {
                 @Override
-                public void updateUi(int stepCount) {
+                    public void updateUi(int stepCount) {
+
+                    UtilsImp.spput("sports1",stepCount);
+
 //                    MLog.i("服务", "回调步数监听");
                     String planWalk_QTY = (String) UtilsImp.spget("planWalk_QTY", "7000");
                     cc.setCurrentCount(Integer.parseInt(planWalk_QTY), stepCount);
@@ -303,14 +303,9 @@ public class Sport_walkFragment extends Fragment implements View.OnClickListener
                         String getbaifenbi = UtilsImp.getbaifenbi(stepnuber, Integer.valueOf(distance));
                         mTvJindu.setText(getbaifenbi+"%");
                     }
-                    mTvKaluli.setText((float)((stepnuber*0.4)*0.01441)+"千卡");
+                    mTvKaluli.setText((Double)((stepnuber*0.4)*0.01441)+"千卡");
 
-
-                    if (stepCount-startcontstep >40){
-                        //如果走了500步就提交一次数据到服务器
-                        savenettask(((float)(stepCount*0.4))+"", user);
-                        startcontstep = stepCount ;
-                    }
+                        savenettask(((float)(stepnuber))+"", user);
 
 
                 }

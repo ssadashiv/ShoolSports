@@ -1,24 +1,17 @@
 package com.example.jclzh.shoolsports.view.activity;
-
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
-
 import com.example.jclzh.shoolsports.R;
 import com.example.jclzh.shoolsports.model.adatapter.HistoricalSportAdatapter;
 import com.example.jclzh.shoolsports.model.bean.StepData;
 import com.example.jclzh.shoolsports.utils.DbUtils;
 import com.example.jclzh.shoolsports.utils.ToastUtil;
 import com.example.jclzh.shoolsports.utils.viewutils.LineChartManager;
-import com.example.jclzh.shoolsports.utils.viewutils.LineEngineChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.LineData;
-
 import java.util.List;
 
 /**
@@ -53,9 +46,12 @@ public class HistoricalActivity extends AppCompatActivity implements View.OnClic
         //设置x轴的数据
         int numX = 7;
         //设置y轴的数据
-        float[] datas1 = {536, 123, 769, 432, 102, 26, 94, 85, 536, 123, 769, 432, 102, 26, 94, 85, 536, 123, 769, 432, 102, 26, 94, 85};//数据
+        float[] datas1 = new float[stepDatas.size()];//步数数据
+        for (int i = 0; i < stepDatas.size(); i++) {
+                datas1[i] =Float.parseFloat(stepDatas.get(i).getStep());
+        }
         //设置折线的名称
-        LineChartManager.setLineName("当月值");
+        LineChartManager.setLineName("当月运动量");
         //设置第二条折线y轴的数据
         LineChartManager.setLineName1("上月值");
         //创建两条折线的图表
@@ -84,11 +80,12 @@ public class HistoricalActivity extends AppCompatActivity implements View.OnClic
 //        for (int i = 0; i < stepDatas.size(); i++) {
 //            engineChart.update(Integer.parseInt(stepDatas.get(i).getStep()),stepDatas.get(i).getToday());
 //        }
+
+
         if (stepDatas.size()==0){
             ToastUtil.showShort(HistoricalActivity.this,"您还没有运动数据哟赶紧出去走走吧！");
 
         }else {
-
             HistoricalSportAdatapter  adatapter  = new HistoricalSportAdatapter(stepDatas,HistoricalActivity.this);
             mListvieHistorical.setAdapter(adatapter);
         }

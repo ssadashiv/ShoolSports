@@ -61,7 +61,7 @@ public class GuidePresenter implements GuidePresenterInterface {
         for (  int imgid:guideImgsid){
 
             if (fist){
-                params.setMargins(0,0,0,0);
+                params.setMargins(10,0,0,0);
 
             }else {
                 params.setMargins(10,0,0,0);

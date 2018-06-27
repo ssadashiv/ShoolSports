@@ -154,15 +154,17 @@
 
 
     <Button
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
         android:id="@+id/btn_cut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="6dp"
         android:background="#4c5be9"
         android:text="切换账号"
-        android:textColor="#000"
-        android:textSize="20sp" />
+        android:textColor="#fff"
+        android:textSize="15sp" />
 
 
     <View
@@ -173,15 +175,17 @@
 
 
     <Button
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
         android:id="@+id/btn_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="6dp"
         android:background="#cf1411"
         android:text="退出登陆"
-        android:textColor="#000"
-        android:textSize="20sp" />
+        android:textColor="#fff"
+        android:textSize="15sp" />
 
     <View
         android:layout_width="match_parent"

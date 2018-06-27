@@ -67,7 +67,6 @@ public class SportFragment extends Fragment {
     public void onResume() {
         super.onResume();
 //        viewPager.setAdapter(new SportFragmentAdatapter(getActivity().getSupportFragmentManager(),fragmentlist,ApplicationDate.TABSPORTS));
-
-        viewPager.setCurrentItem(0);
+//        viewPager.setCurrentItem(0);
     }
 }

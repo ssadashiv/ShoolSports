@@ -72,6 +72,15 @@ public class User implements Serializable{
         private int value;
         private int integral;
         private String name;
+        private  String department ;
+
+        public String getDepartment() {
+            return department;
+        }
+
+        public void setDepartment(String department) {
+            this.department = department;
+        }
 
         public int getUsers_id() {
             return users_id;
